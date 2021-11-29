@@ -1,0 +1,38 @@
+# ------------------------------------
+#   欢迎您使用阿里云函数计算 FC 组件进行项目开发
+#   组件仓库地址/帮助文档：https://github.com/devsapp/fc
+#   Yaml参考文档：https://github.com/devsapp/fc/blob/jiangyu-docs/docs/zh/yaml.md
+#   快速入门：
+#      快速创建应用：https://github.com/devsapp/fc/blob/jiangyu-docs/docs/zh/quick_start_application.md
+#      快速使用命令：https://github.com/devsapp/fc/blob/jiangyu-docs/docs/zh/quick_start_function.md
+# ------------------------------------
+
+
+edition: 1.0.0
+name: browser_video_recorder
+access: '{{access}}'
+
+services:
+  browser_video_recorder_project:
+    component: fc
+    props:
+      region: cn-hangzhou
+      service:
+        name: browser_video_recorder
+        description: 'record a video for chrome browser'
+        internetAccess: true
+        #logConfig: auto
+      function:
+        name: recoder
+        runtime: custom-container
+        codeUri: ./code
+        memorySize: 3072
+        timeout: 900
+        customContainerConfig:
+          image: registry-vpc.cn-hangzhou.aliyuncs.com/fc-demo/headless-ffmpeg:v2
+        environmentVariables:
+          TZ: Asia/Shanghai
+          OSS_AK_ID: <your ak_id>
+          OSS_AK_SECRET: <your ak_secret>
+          OSS_BUCKET: <your bucket>
+          OSS_ENDPOINT: oss-cn-hangzhou.aliyuncs.com
