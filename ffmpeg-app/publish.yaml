@@ -1,0 +1,22 @@
+Type: Application
+Name: ffmpeg-app
+Version: 0.1.0
+Provider:
+  - 阿里云
+Description: 包括音视频转码等相关的ffmpeg的应用案例
+HomePage: https://github.com/devsapp/start-ffmpeg
+Tags:
+  - ffmpeg
+  - 音视频
+  - 转码
+  - 音频
+  - 视频
+Category: 音视频处理
+Service:
+  函数计算:
+    Authorities:
+      - 创建函数
+      - 删除函数
+      - 创建服务
+      - 删除服务
+    Runtime: Python
