@@ -1,5 +1,5 @@
 Type: Application
-Name: start-headless-ffmpeg
+Name: headless-ffmpeg
 Provider:
   - 阿里云
 Version: 0.1.1
