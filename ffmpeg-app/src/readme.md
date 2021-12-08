@@ -12,7 +12,7 @@
 
 ## 快速开始
 
-- 初始化项目：`s init devsapp/ffmpeg-app`
+- 初始化项目：`s init ffmpeg-app`
 - 进入项目：`cd ffmpeg-app`
 - 根据需求执行部署：
   - 部署全部：`s deploy`
@@ -113,17 +113,6 @@
 
 从上表可以看出， 基于函数计算 + 函数工作流的方案在计算资源成本上对于计算复杂度较高的 `flv 转 mp4` 还是计算复杂度较低的 `mp4 转 flv`, 都具有很强的成本竞争力。
 
-## 部署
-
-### 准备工作
-
-免费开通[函数计算](https://statistics.functioncompute.com/?title=FcOssFFmpeg&theme=ServerlessVideo&author=rsong&src=article&url=http://fc.console.aliyun.com) 和[对象存储](https://oss.console.aliyun.com/)
-
-### 部署
-
-只需要执行`s init ffmpeg -p alibaba && cd ffmpeg && s deploy`即可
-
-<a name="get_media_meta"></a>
 
 ## get_media_meta 获取音视频 meta
 
