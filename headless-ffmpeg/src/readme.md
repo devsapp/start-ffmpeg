@@ -21,7 +21,7 @@ $ cd headless-ffmpeg
 
 ```bash
 $ s build --use-docker --dockerfile ./code/Dockerfile
-$ s deploy --push-registry acr-internet --use-local -y
+$ s deploy --use-local -y
 
 # 测试调用
 $ s invoke -e '{"record_time":"35","video_url":"https://dy-vedio.oss-cn-hangzhou.aliyuncs.com/video/a.mp4","output_file":"record/test.mp4"}'
