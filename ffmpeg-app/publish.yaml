@@ -20,3 +20,39 @@ Service:
       - 创建服务
       - 删除服务
     Runtime: Python
+Parameters:
+  region:
+    type: string
+    default: cn-hangzhou
+    description: 创建应用所在的地区
+    required: true
+    enum:
+      - cn-beijing
+      - cn-hangzhou
+      - cn-shanghai
+      - cn-qingdao
+      - cn-zhangjiakou
+      - cn-huhehaote
+      - cn-shenzhen
+      - cn-chengdu
+      - cn-hongkong
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-southeast-3
+      - ap-southeast-5
+      - ap-northeast-1
+      - eu-central-1
+      - eu-west-1
+      - us-west-1
+      - us-east-1
+      - ap-south-1
+  serviceName:
+    type: string
+    default: FcOssFFmpeg
+    description: 应用所属的函数计算服务
+    required: true
+  roleArn:
+    type: string
+    default: 'acs:ram::<your uid>:role/FcOssFFmpegRole'
+    description: 应用所属的函数计算服务配置的 role, 请提前创建好对应的 role 并配置好 AliyunOSSFullAccess policy
+    required: true
