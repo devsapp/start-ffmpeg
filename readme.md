@@ -13,5 +13,3 @@
     - VideoWatermark: 功能强大的视频添加水印功能 ([案例代码](./ffmpeg-app/src/functions/video_watermark))
 - [对直播视频流截图的应用](./rtmp-snapshot/src): `s init rtmp-snapshot`
 - [一个对浏览器全景录制](./headless-ffmpeg/src): `s init headless-ffmpeg`
-
-
