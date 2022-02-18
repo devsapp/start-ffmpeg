@@ -19,7 +19,7 @@ vars:
     description: use ffmpeg to transcode video in FC
     internetAccess: true
     role: "{{ roleArn }}"
-    #logConfig: auto
+    # logConfig: auto
 
 services:
   VideoTranscoder:
