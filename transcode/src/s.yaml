@@ -1,0 +1,74 @@
+# ------------------------------------
+#   欢迎您使用阿里云函数计算 FC 组件进行项目开发
+#   组件仓库地址/帮助文档：https://github.com/devsapp/fc
+#   Yaml参考文档：https://github.com/devsapp/fc/blob/jiangyu-docs/docs/zh/yaml.md
+#   快速入门：
+#      快速创建应用：https://github.com/devsapp/fc/blob/jiangyu-docs/docs/zh/quick_start_application.md
+#      快速使用命令：https://github.com/devsapp/fc/blob/jiangyu-docs/docs/zh/quick_start_function.md
+# ------------------------------------
+
+
+edition: 1.0.0
+name: video-transcode
+access: '{{ access }}'
+
+vars:
+  region: "{{ region }}"
+  service:
+    name: "{{ serviceName }}"
+    description: use ffmpeg to transcode video in FC
+    internetAccess: true
+    role: "{{ roleArn }}"
+    # logConfig: auto
+
+services:
+  VideoTranscoder:
+    component: fc
+    props:
+      region: ${vars.region}
+      service: ${vars.service}
+      function:
+        name: transcode
+        runtime: python3
+        Handler: index.handler
+        codeUri: ./code/transcode
+        memorySize: 8192
+        timeout: 7200
+        instanceType: c1
+        environmentVariables:
+          TZ: "{{ timeZone }}" 
+        asyncConfiguration:
+          destination:
+            # onSuccess: acs:fc:::services/${vars.service.name}/functions/dest-succ
+            onFailure: acs:fc:::services/${vars.service.name}/functions/dest-fail
+          maxAsyncEventAgeInSeconds: 18000
+          maxAsyncRetryAttempts: 2
+          statefulInvocation: true
+
+  dest-succ: # 业务名称/模块名称
+    component:  fc
+    props: #  组件的属性值
+      region: ${vars.region}
+      service: ${vars.service}
+      function:
+        name: dest-succ
+        description: 'async task destination success function by serverless devs'
+        runtime: python3
+        codeUri: ./code/succ
+        handler: index.handler
+        memorySize: 512
+        timeout: 60
+
+  dest-fail: # 业务名称/模块名称
+    component:  fc
+    props: #  组件的属性值
+      region: ${vars.region}
+      service: ${vars.service}
+      function:
+        name: dest-fail
+        description: 'async task destination fail function by serverless devs'
+        runtime: python3
+        codeUri: ./code/fail
+        handler: index.handler
+        memorySize: 512
+        timeout: 60

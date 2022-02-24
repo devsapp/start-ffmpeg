@@ -1,2 +1,2 @@
-./headless-ffmpeg
-./rtmp-snapshot
+./ffmpeg-app
+./transcode

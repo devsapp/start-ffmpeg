@@ -1,44 +1,62 @@
-## 应用简介
+#  阿里云 FFmpeg 音视频处理主题案例
 
-- [函数计算 FC](https://help.aliyun.com/product/50980.html) ：阿里云函数计算是事件驱动的全托管计算服务。通过函数计算，您无需管理服务器等基础设施，只需编写代码并上传。函数计算会为您准备好计算资源，以弹性、可靠的方式运行您的代码，并提供日志查询、性能监控、报警等功能。
+> 快速部署和体验Serverless架构下的FFmpeg 音视频处理主题项目
 
-- [对象存储 OSS](https://help.aliyun.com/document_detail/31817.html) ：阿里云提供的海量、安全、低成本、高可靠的云存储服务
+- [体验前准备](#体验前准备)
+- [代码与预览](#代码与预览)
+- [快速部署和体验](#快速部署和体验)
+    - [在线快速体验](#在线快速体验)
+    - [在本地部署体验](#在本地部署体验)
+- [应用详情](#应用详情)
+    - [方案成本优势](#方案成本优势)
+    - [函数使用详情](#函数使用详情)
 
-本应用实现的是: 基于函数计算 FC + FFmpeg 实现 Serverless 架构的弹性高可用的高度自定义音视频处理主题
+## 体验前准备
 
-本项目中只是展现了这 7 个示例， FC + FFmpeg 可以实现对 oss 上的音视频进行任意的自定义处理， 欢迎大家提 issue 完善示例。
+该应用案例，需要您开通[阿里云函数计算](https://fcnext.console.aliyun.com/) 产品；并建议您当前的账号有权限存在`FCDefaultRole`。
 
-该工程示例已经上线到函数计算应用中心，免费开通[函数计算](https://statistics.functioncompute.com/?title=FcOssFFmpeg&theme=ServerlessVideo&author=rsong&src=article&url=http://fc.console.aliyun.com) 即可在控制台应用中心 -> 新建应用即查看到 `Video Audio Processing Service`。
+## 代码与预览
 
-## 快速开始
+- [:octocat: 源代码](https://github.com/devsapp/start-ffmpeg/tree/master/ffmpeg-app/src)
+- [:earth_africa: 效果预览](https://images.devsapp.cn/application/fc-oss-ffmpeg.gif)
 
-- 初始化项目：`s init ffmpeg-app`
-- 进入项目：`cd ffmpeg-app`
-- 根据需求执行部署：
+## 快速部署和体验
+### 在线快速体验
+
+- 通过阿里云 **Serverless 应用中心**： 可以点击 [【🚀 部署】](https://fcnext.console.aliyun.com/applications/create?clone_url=https://github.com/huangfushan/hfs-test-5.git) ，按照引导填入参数，快速进行部署和体验。
+- 通过阿里云 **CloudShell**：可以点击 [【🏄 部署】](https://api.aliyun.com/new#/tutorial?action=git_open&git_repo=https://github.com/devsapp/devsapp-cloudshell-example.git&tutorial=tutorial/start-ffmpeg-app.md) ，按照引导填入参数，快速进行部署和体验。
+
+### 在本地部署体验
+
+1. 下载安装 Serverless Devs：`npm install @serverless-devs/s` 
+    > 详细文档可以参考 [Serverless Devs 安装文档](https://github.com/Serverless-Devs/Serverless-Devs/blob/master/docs/zh/install.md)
+2. 配置密钥信息：`s config add`
+    > 详细文档可以参考 [阿里云密钥配置文档](https://github.com/devsapp/fc/blob/main/docs/zh/config.md)
+3. 初始化项目：`s init ffmpeg-app -d ffmpeg-app`
+4. 进入项目并部署：`cd ffmpeg-app && s deploy`
   - 部署全部：`s deploy`
   - 部署单个功能：`s <projectName> deploy`，单个功能对应：
     - AudioConvert: 音频格式转换器
     - GetMediaMeta: 获取音视频 meta
-    - TranscodeMaster: 功能强大的并行视频转码器
-    - TranscodeWorker: 功能强大的并行视频转码器
     - GetDuration: 获取音视频时长
     - VideoGif: 功能强大的 video 提取为 gif 函数
     - GetSprites: 功能强大雪碧图制作函数
     - VideoWatermark: 功能强大的视频添加水印功能
 
-## 示例效果显示
+> 在本地使用该项目时，不仅可以部署，还可以进行更多的操作，例如查看日志，查看指标，进行多种模式的调试等，这些操作详情可以参考[函数计算组件命令文档](https://github.com/devsapp/fc#%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3) ;
 
-[https://images.devsapp.cn/application/fc-oss-ffmpeg.gif](https://images.devsapp.cn/application/fc-oss-ffmpeg.gif)
+## 应用详情
 
-## 方案优势
+本应用实现的是: 基于函数计算 FC + FFmpeg + OSS 实现 Serverless 架构的弹性高可用的高度自定义音视频处理主题
+本项目中只是展现了这 6 个示例， FC + FFmpeg 可以实现对 OSS 上的音视频进行任意的自定义处理。
 
-### 成本比较
+### 方案成本优势
 
 实验对象：
 
-- 视频是 89s 的 mov 标清短视频: [480P.mov](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/480P.mov)
+- 视频是 89s 的 mov 标清短视频: [480P.mov](https://images.devsapp.cn/application/480P.mov)
 
-- 音频为 89s 的 mp3 音频: [480P.mp3](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/480P.mp3)
+- 音频为 89s 的 mp3 音频: [480P.mp3](https://images.devsapp.cn/application/480P.mp3)
 
 | 函数            | 内存规格 | 执行时间 | 一次计费(元) | 备注                                                  |
 | --------------- | -------- | -------- | ------------ | ----------------------------------------------------- |
@@ -57,62 +75,10 @@
 
 详情：[函数计算计费](https://help.aliyun.com/document_detail/54301.html)
 
-### 转码
 
-有关更多 serverless 转码内容， 可以参考 [simple-video-processing](https://github.com/awesome-fc/simple-video-processing)
+### 函数使用详情
 
-#### 性能
-
-实验视频为是 89s 的 mov 文件 4K 视频: [4K.mov](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/4K.mov)，云服务进行 mov -> mp4 普通转码需要消耗的时间为 188s， 将这个参考时间记为 T
-
-| 视频切片时间 | FC 转码耗时 | 性能加速百分比 |
-| ------------ | ----------- | -------------- |
-| 45s          | 160s        | 117.5%         |
-| 25s          | 100s        | 188%           |
-| 15s          | 70s         | 268.6%         |
-| 10s          | 45s         | 417.8%         |
-| 5s           | 35s         | 537.1%         |
-
-> 性能加速百分比 = T / FC 转码耗时
-
-从上表可以看出，设置的视频切片时间越短， 视频转码时间越短， 函数计算可以自动瞬时调度出更多的计算资源来一起完成这个视频的转码, 转码性能优异。
-
-#### 成本
-
-我们这边选用点播视频中最常用的两个格式(mp4、flv)之间进行相互转换，经实验验证， 函数内存设置为 3G，基于该方案从 mp4 转码为 flv 的费用概览表:
-
-> 实验视频为是 89s 的 mp4 和 flv 格式的文件视频， 测试视频地址：
-
-> [480P.mp4](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/480P.mp4) [720P.mp4](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/720P.mp4) [1080P.mp4](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/1080P.mov) [4K.mp4](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/4K.mp4)
-
-> [480P.flv](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/480P.flv) [720P.flv](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/720P.flv) [1080P.flv](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/1080P.flv) [4K.flv](https://fc-hz-demo.oss-cn-hangzhou.aliyuncs.com/fnf_video/inputs/4K.flv)
-
-> 测试命令: `ffmpeg -i test.flv test.mp4` 和 `ffmpeg -i test.flv test.mp4`
-
-**mp4 转 flv：**
-
-| 分辨率          | bitrate    | 帧率 | FC 转码耗费时间 | FC 转码费用 | 腾讯云视频处理费用 | 成本下降百分比 |
-| --------------- | ---------- | ---- | --------------- | ----------- | ------------------ | -------------- |
-| 标清 640\*480   | 889 kb/s   | 24   | 11.2s           | 0.003732288 | 0.032              | 88.3%          |
-| 高清 1280\*720  | 1963 kb/s  | 24   | 20.5s           | 0.00683142  | 0.065              | 89.5%          |
-| 超清 1920\*1080 | 3689 kb/s  | 24   | 40s             | 0.0133296   | 0.126              | 89.4%          |
-| 4K 3840\*2160   | 11185 kb/s | 24   | 142s            | 0.04732008  | 0.556              | 91.5%          |
-
-**flv 转 mp4：**
-
-| 分辨率          | bitrate    | 帧率 | FC 转码耗费时间 | FC 转码费用 | 腾讯云视频处理费用 | 成本下降百分比 |
-| --------------- | ---------- | ---- | --------------- | ----------- | ------------------ | -------------- |
-| 标清 640\*480   | 712 kb/s   | 24   | 34.5s           | 0.01149678  | 0.032              | 64.1%          |
-| 高清 1280\*720  | 1806 kb/s  | 24   | 100.3s          | 0.033424    | 0.065              | 48.6%          |
-| 超清 1920\*1080 | 3911 kb/s  | 24   | 226.4s          | 0.0754455   | 0.126              | 40.1%          |
-| 4K 3840\*2160   | 15109 kb/s | 24   | 912s            | 0.30391488  | 0.556              | 45.3%          |
-
-> 成本下降百分比 = （腾讯云视频处理费用 - FC 转码费用）/ 腾讯云视频处理费用
-
-> [腾讯云视频处理](https://cloud.tencent.com/document/product/862/36180)，计费使用普通转码，转码时长不足一分钟，按照一分钟计算，这里计费采用的是 2 min，即使采用 1.5 min 计算， 成本下降百分比基本在 10%以内浮动
-
-从上表可以看出， 基于函数计算 + 函数工作流的方案在计算资源成本上对于计算复杂度较高的 `flv 转 mp4` 还是计算复杂度较低的 `mp4 转 flv`, 都具有很强的成本竞争力。
-
+<a name="get_media_meta"></a>
 
 ## get_media_meta 获取音视频 meta
 
@@ -123,7 +89,7 @@
 ```json
 {
   "bucket_name": "test-bucket",
-  "object_key": "a.mp4"
+  "object_key": "a.mov"
 }
 ```
 
@@ -134,7 +100,7 @@
    "format": {
       "bit_rate": "488281",
       "duration": "179.955000",
-      "filename": "http://fc-hz-demo.oss-cn-hangzhou-internal.aliyuncs.com/fnf_video%2Finputs%2Fb.mov",
+      "filename": "http://fc-hz-demo.oss-cn-hangzhou-internal.aliyuncs.com/a.mov",
       "format_long_name": "QuickTime / MOV",
       "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
       ...
@@ -212,77 +178,6 @@ resp = client.invoke_function("FcOssFFmpeg", "GetDuration", payload=json.dumps(
 print(resp)
 
 ```
-
-<a name="transcode"></a>
-
-## transcode 功能强大的并行视频转码器
-
-TIPS:
-
-> 如果您对转码时间没有极快的需求， 强烈建议直接使用性能型实例(目前最大 16C32G)， 单实例单并发直接转码:
-> [simple-video-processing](https://github.com/awesome-fc/simple-video-processing)
-
-<br/>
-
-<img src="https://images.devsapp.cn/application/transcode.png">
-
-如上图所示， 利用函数计算的毫秒级动态扩容 + 分治思想实现快速转码， 通过设置合理的分片时间， 达到加快转码的目的。
-
-**event format:**
-
-```json
-{
-  "bucket_name": "test-bucket",
-  "object_key": "a.mp4",
-  "dst_type": ".mov",
-  "segment_time_seconds": 20,
-  "output_dir": "output/"
-}
-```
-
-- dst_type: 转码后的目标格式
-- segment_time_seconds: 切片的分段时间
-- output_dir: 转码后视频在 OSS bucket 中的前缀
-
-**response:**
-
-`ok`
-
-转码后的视频会保存在 OSS 的这个 output_dir 目录中
-
-**S 工具调用示例:**
-
-```bash
-$ s TranscodeMaster invoke -e '{"bucket_name": "test-bucket","object_key": "a.mp4","dst_type" : ".flv", "segment_time_seconds": 30, "output_dir" : "output/"}'
-```
-
-**python sdk 调用函数示例:**
-
-```python
-# -*- coding: utf-8 -*-
-import fc2
-import json
-
-client = fc2.Client(endpoint="http://1123456.cn-hangzhou.fc.aliyuncs.com",accessKeyID="xxxxxxxx",accessKeySecret="yyyyyy")
-
-resp = client.invoke_function("FcOssFFmpeg", "TranscodeMaster", payload=json.dumps(
-{
-    "bucket_name" : "test-bucket",
-    "object_key" : "a.mp4",
-    "dst_type" : ".mov",
-    "segment_time_seconds": 20,
-    "output_dir" : "output/"
-})).data
-
-print(resp)
-
-```
-
-**更高自定义需求**
-
-- [simple-video-processing](https://github.com/awesome-fc/simple-video-processing) 提供一键式完整解决方案
-
-- 可配合使用[函数工作流](https://help.aliyun.com/product/113549.html)实现功能更加复杂视频处理工作流方案: [fc-fnf-video-processing](https://github.com/awesome-fc/fc-fnf-video-processing/tree/master/video-processing)
 
 <a name="get_sprites"></a>
 
@@ -538,3 +433,9 @@ resp = client.invoke_function("FcOssFFmpeg", "audio_convert", payload=json.dumps
 print(resp)
 
 ```
+
+-----
+
+> - Serverless Devs 项目：https://www.github.com/serverless-devs/serverless-devs   
+> - Serverless Devs 文档：https://www.github.com/serverless-devs/docs   
+> - Serverless Devs 钉钉交流群：33947367    
