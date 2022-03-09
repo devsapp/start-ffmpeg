@@ -25,7 +25,7 @@ services:
         runtime: ${vars.runtime}
         codeUri: ./functions/audio_convert
         handler: ${vars.handler}
-        memorySize: 256
+        memorySize: 1024
         timeout: ${vars.timeout}
 
   GetMediaMeta: #  服务名称
@@ -53,7 +53,7 @@ services:
         runtime: ${vars.runtime}
         codeUri: ./functions/get_duration
         handler: ${vars.handler}
-        memorySize: 256
+        memorySize: 1024
         timeout: ${vars.timeout}
 
   VideoGif: #  服务名称
@@ -67,7 +67,7 @@ services:
         runtime: ${vars.runtime}
         codeUri: ./functions/video_gif
         handler: ${vars.handler}
-        memorySize: 512
+        memorySize: 1024
         timeout: ${vars.timeout}
 
   GetSprites: #  服务名称
@@ -81,7 +81,7 @@ services:
         runtime: ${vars.runtime}
         codeUri: ./functions/get_sprites
         handler: ${vars.handler}
-        memorySize: 512
+        memorySize: 1024
         timeout: ${vars.timeout}
 
   VideoWatermark: #  服务名称
@@ -95,5 +95,5 @@ services:
         runtime: ${vars.runtime}
         codeUri: ./functions/video_watermark
         handler: ${vars.handler}
-        memorySize: 256
+        memorySize: 1024
         timeout: ${vars.timeout}
