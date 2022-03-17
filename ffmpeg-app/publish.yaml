@@ -59,6 +59,6 @@ Parameters:
       title: RAM角色ARN
       type: string
       default: 'acs:ram::<your uid>:role/fcffmpegrole'
-      pattern: acs:ram::([0-9]*):role/fcffmpegrole
+      pattern: '^acs:ram.*:role.*$'
       description: 应用所属的函数计算服务配置的 role, 请提前创建好对应的 role, 授信函数计算服务, 并配置好 AliyunOSSFullAccess 和 AliyunFCFullAccess policy，格式为：acs:ram::<your uid>:role/fcffmpegrole
       required: true
