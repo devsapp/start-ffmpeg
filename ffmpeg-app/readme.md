@@ -18,7 +18,7 @@
 ## 代码与预览
 
 - [:octocat: 源代码](https://github.com/devsapp/start-ffmpeg/tree/master/ffmpeg-app/src)
-- [:earth_africa: 效果预览](https://images.devsapp.cn/application/fc-oss-ffmpeg.gif)
+- [:earth_africa: 效果预览](https://images.devsapp.cn/application/ffmpeg-app/fc-oss-ffmpeg.gif)
 
 ## 快速部署和体验
 ### 在线快速体验
@@ -53,9 +53,9 @@
 
 实验对象：
 
-- 视频是 89s 的 mov 标清短视频: [480P.mov](https://images.devsapp.cn/application/480P.mov)
+- 视频是 89s 的 mov 标清短视频: [480P.mov](https://images.devsapp.cn/application/ffmpeg-app/480P.mov)
 
-- 音频为 89s 的 mp3 音频: [480P.mp3](https://images.devsapp.cn/application/480P.mp3)
+- 音频为 89s 的 mp3 音频: [480P.mp3](https://images.devsapp.cn/application/ffmpeg-app/480P.mp3)
 
 | 函数            | 内存规格 | 执行时间 | 一次计费(元) | 备注                                                  |
 | --------------- | -------- | -------- | ------------ | ----------------------------------------------------- |
