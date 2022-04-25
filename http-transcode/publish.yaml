@@ -2,7 +2,7 @@ Type: Application
 Name: http-video-transcode
 Provider:
   - 阿里云
-Version: 0.0.2
+Version: 0.0.3
 Description: 快速部署音视频转码的应用到阿里云函数计算
 HomePage: https://github.com/devsapp/start-ffmpeg
 Tags:
@@ -52,8 +52,14 @@ Parameters:
       type: string
       default: ''
       pattern: '^acs:ram::[0-9]*:role/.*$'
-      description: 应用所属的函数计算服务配置的 role, 请提前创建好对应的 role, 授信函数计算服务, 并配置好 AliyunOSSFullAccess 和 AliyunFCFullAccess policy
+      description: 应用所属的函数计算服务配置的 role
       required: true
+      x-role:
+        name: fctranscoderole
+        service: fc
+        authorities:
+          - AliyunOSSFullAccess
+          - AliyunFCDefaultRolePolicy
     timeZone:
       title: 时区
       type: string
