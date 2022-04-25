@@ -1,6 +1,6 @@
 Type: Application
 Name: ffmpeg-app
-Version: 0.0.22
+Version: 0.0.23
 Provider:
   - 阿里云
 Description: 包括音视频转码等相关的ffmpeg的应用案例
