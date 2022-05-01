@@ -2,7 +2,7 @@ Type: Application
 Name: headless-ffmpeg
 Provider:
   - 阿里云
-Version: 0.1.4
+Version: 0.1.6
 Description: 快速部署一个全景录制的应用到阿里云函数计算
 HomePage: https://github.com/devsapp/headless-ffmpeg
 Tags:

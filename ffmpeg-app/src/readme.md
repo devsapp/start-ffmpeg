@@ -1,50 +1,62 @@
-#  阿里云 FFmpeg 音视频处理主题案例
+# ffmpeg-app 帮助文档
 
-> 快速部署和体验Serverless架构下的FFmpeg 音视频处理主题项目
+<p align="center" class="flex justify-center">
+    <a href="https://www.serverless-devs.com" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app&type=packageType">
+  </a>
+  <a href="http://www.devsapp.cn/details.html?name=ffmpeg-app" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app&type=packageVersion">
+  </a>
+  <a href="http://www.devsapp.cn/details.html?name=ffmpeg-app" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app&type=packageDownload">
+  </a>
+</p>
 
-- [体验前准备](#体验前准备)
-- [代码与预览](#代码与预览)
-- [快速部署和体验](#快速部署和体验)
-    - [在线快速体验](#在线快速体验)
-    - [在本地部署体验](#在本地部署体验)
-- [应用详情](#应用详情)
-    - [方案成本优势](#方案成本优势)
-    - [函数使用详情](#函数使用详情)
+<description>
 
-## 体验前准备
+> ***基于FFmpeg的音视频处理应用, 包括获取音视频元信息、获取音视频时长、音频转换、雪碧图生成、生成 GIF、打水印等多个模块。***
 
-该应用案例，需要您开通[阿里云函数计算](https://fcnext.console.aliyun.com/) 产品；并建议您当前的账号有权限存在`FCDefaultRole`。
+</description>
 
-## 代码与预览
+<table>
 
-- [:octocat: 源代码](https://github.com/devsapp/start-ffmpeg/tree/master/ffmpeg-app/src)
-- [:earth_africa: 效果预览](https://images.devsapp.cn/application/ffmpeg-app/fc-oss-ffmpeg.gif)
 
-## 快速部署和体验
-### 在线快速体验
 
-- 通过阿里云 **Serverless 应用中心**： 可以点击 [【🚀 部署】](https://fcnext.console.aliyun.com/applications/create?template=ffmpeg-app) ，按照引导填入参数，快速进行部署和体验。
+</table>
 
-### 在本地部署体验
+<codepre id="codepre">
 
-1. 下载安装 Serverless Devs：`npm install @serverless-devs/s` 
-    > 详细文档可以参考 [Serverless Devs 安装文档](https://github.com/Serverless-Devs/Serverless-Devs/blob/master/docs/zh/install.md)
-2. 配置密钥信息：`s config add`
-    > 详细文档可以参考 [阿里云密钥配置文档](https://github.com/devsapp/fc/blob/main/docs/zh/config.md)
-3. 初始化项目：`s init ffmpeg-app -d ffmpeg-app`
-4. 进入项目并部署：`cd ffmpeg-app && s deploy`
-  - 部署全部：`s deploy`
-  - 部署单个功能：`s <projectName> deploy`，单个功能对应：
-    - AudioConvert: 音频格式转换器
-    - GetMediaMeta: 获取音视频 meta
-    - GetDuration: 获取音视频时长
-    - VideoGif: 功能强大的 video 提取为 gif 函数
-    - GetSprites: 功能强大雪碧图制作函数
-    - VideoWatermark: 功能强大的视频添加水印功能
+</codepre>
 
-> 在本地使用该项目时，不仅可以部署，还可以进行更多的操作，例如查看日志，查看指标，进行多种模式的调试等，这些操作详情可以参考[函数计算组件命令文档](https://github.com/devsapp/fc#%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3) ;
+<deploy>
 
-## 应用详情
+## 部署 & 体验
+
+<appcenter>
+
+- :fire: 通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=ffmpeg-app) ，
+[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=ffmpeg-app)  该应用。 
+
+</appcenter>
+
+- 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
+    - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
+    - 初始化项目：\`s init ffmpeg-app -d ffmpeg-app\`   
+    - 进入项目，并进行项目部署：\`cd ffmpeg-app && s deploy -y\`
+
+</deploy>
+
+<appdetail id="flushContent">
+
+# 应用详情
+
+如果部署完整项目可以直接使用`s deploy`，如果想要部署单个项目，可以：
+- AudioConvert: 音频格式转换器
+- GetMediaMeta: 获取音视频 meta
+- GetDuration: 获取音视频时长
+- VideoGif: 功能强大的 video 提取为 gif 函数
+- GetSprites: 功能强大雪碧图制作函数
+- VideoWatermark: 功能强大的视频添加水印功能
 
 本应用实现的是: 基于函数计算 FC + FFmpeg + OSS 实现 Serverless 架构的弹性高可用的高度自定义音视频处理主题
 本项目中只是展现了这 6 个示例， FC + FFmpeg 可以实现对 OSS 上的音视频进行任意的自定义处理。
@@ -433,8 +445,21 @@ print(resp)
 
 ```
 
------
 
-> - Serverless Devs 项目：https://www.github.com/serverless-devs/serverless-devs   
-> - Serverless Devs 文档：https://www.github.com/serverless-devs/docs   
-> - Serverless Devs 钉钉交流群：33947367    
+</appdetail>
+
+<devgroup>
+
+## 开发者社区
+
+您如果有关于错误的反馈或者未来的期待，您可以在 [Serverless Devs repo Issues](https://github.com/serverless-devs/serverless-devs/issues) 中进行反馈和交流。如果您想要加入我们的讨论组或者了解 FC 组件的最新动态，您可以通过以下渠道进行：
+
+<p align="center">
+
+| <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407298906_20211028074819117230.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407044136_20211028074404326599.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407252200_20211028074732517533.png" width="130px" > |
+|--- | --- | --- |
+| <center>微信公众号：\`serverless\`</center> | <center>微信小助手：\`xiaojiangwh\`</center> | <center>钉钉交流群：\`33947367\`</center> | 
+
+</p>
+
+</devgroup>

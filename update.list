@@ -1,1 +1,5 @@
 ./ffmpeg-app
+headless-ffmpeg
+http-transcode
+rtmp-snapshot
+transcode

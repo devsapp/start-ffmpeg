@@ -12,6 +12,7 @@
 #   更多函数计算案例，可参考：https://github.com/devsapp/awesome/
 #   有问题快来钉钉群问一下吧：33947367
 # ------------------------------------
+
 edition: 1.0.0
 name: video-transcode
 # access 是当前应用所需要的密钥信息配置：
@@ -30,9 +31,6 @@ vars:
 
 services:
   VideoTranscoder: # 业务名称/模块名称
-    # 如果只想针对 ai-project 下面的业务进行相关操作，可以在命令行中加上 ai-project，例如：
-    # 只对async-task进行构建：s ai-project build
-    # 如果不带有 ai-project ，而是直接执行 s build，工具则会对当前Yaml下，所有和 ai-project 平级的业务模块（如有其他平级的模块，例如下面注释的next-function），按照一定顺序进行 build 操作
     component:  fc    # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
 #    actions:          # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
 #      pre-deploy:  # 在deploy之前运行

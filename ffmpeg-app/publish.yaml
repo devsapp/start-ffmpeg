@@ -1,6 +1,6 @@
 Type: Application
 Name: ffmpeg-app
-Version: 0.0.30
+Version: 0.0.33
 Provider:
   - 阿里云
 Description: 基于FFmpeg的音视频处理应用, 包括获取音视频元信息、获取音视频时长、音频转换、雪碧图生成、生成 GIF、打水印等多个模块。
