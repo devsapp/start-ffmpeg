@@ -2,13 +2,13 @@ Type: Application
 Name: http-video-transcode
 Provider:
   - 阿里云
-Version: 0.0.5
+Version: 0.0.6
 Description: 快速部署音视频转码的应用到阿里云函数计算
 HomePage: https://github.com/devsapp/start-ffmpeg
 Tags:
   - 部署函数
   - 音视频转码
-Category: 基础云服务
+Category: 音视频处理
 Service:
   函数计算:
     Authorities:
