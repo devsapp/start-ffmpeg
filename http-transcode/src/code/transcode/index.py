@@ -61,8 +61,10 @@ def handle_m3u8(request_id, oss_client, input_path, shortname, output_dir):
         ts_dir, shortname + '_%03d.ts')
     cmd1 = ['ffmpeg', '-y', '-i', input_path, '-c:v',
             'libx264', transcoded_filepath]
-    cmd2 = ['ffmpeg', '-y', '-i', transcoded_filepath, '-f', 'segment',
+
+    cmd2 = ['ffmpeg', '-y', '-i', transcoded_filepath, '-c', 'copy', '-map',  '0',  '-f', 'segment',
             '-segment_list', os.path.join(ts_dir, 'playlist.m3u8'), '-segment_time', '10', split_transcoded_filepath]
+
     try:
         subprocess.run(
             cmd1, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
