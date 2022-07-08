@@ -2,8 +2,8 @@ Type: Application
 Name: rtmp-snapshot
 Provider:
   - 阿里云
-Version: 0.1.6
-Description: 基于FFmpeg的音视频处理应用, 包括获取音视频元信息、获取音视频时长、音频转换、雪碧图生成、生成 GIF、打水印等多个模块。
+Version: 0.1.7
+Description: 基于FFmpeg对直播视频流进行截图
 HomePage: https://github.com/devsapp/start-ffmpeg/tree/master/rtmp-snapshot
 Tags:
   - ffmpeg
