@@ -2,14 +2,73 @@ Type: Application
 Name: rtmp-snapshot
 Provider:
   - 阿里云
-Version: 0.1.4
-Description: 快速部署直播视频流截图的应用到阿里云函数计算
-HomePage: https://github.com/devsapp/start-ffmpeg
+Version: 0.1.6
+Description: 基于FFmpeg的音视频处理应用, 包括获取音视频元信息、获取音视频时长、音频转换、雪碧图生成、生成 GIF、打水印等多个模块。
+HomePage: https://github.com/devsapp/start-ffmpeg/tree/master/rtmp-snapshot
 Tags:
-  - 部署函数
-  - 音视频处理
-Category: 基础云服务
+  - ffmpeg
+  - 直播视频视频流
+  - 截图
+Category: 音视频处理
 Service:
   函数计算:
     Authorities:
-      - 管理员权限
+      - AliyunFCFullAccess
+Parameters:
+  type: object
+  additionalProperties: false # 不允许增加其他属性
+  required: # 必填项
+    - region
+    - serviceName
+    - roleArn
+  properties:
+    region:
+      title: 地域
+      type: string
+      default: cn-hangzhou
+      description: 创建应用所在的地区
+      enum:
+        - cn-beijing
+        - cn-hangzhou
+        - cn-shanghai
+        - cn-qingdao
+        - cn-zhangjiakou
+        - cn-huhehaote
+        - cn-shenzhen
+        - cn-chengdu
+        - cn-hongkong
+        - ap-southeast-1
+        - ap-southeast-2
+        - ap-southeast-3
+        - ap-southeast-5
+        - ap-northeast-1
+        - eu-central-1
+        - eu-west-1
+        - us-west-1
+        - us-east-1
+        - ap-south-1
+    serviceName:
+      title: 服务名
+      type: string
+      default: rtmp-snapshot
+      description: 应用所属的函数计算服务
+      required: true
+    roleArn:
+      title: RAM角色ARN
+      type: string
+      default: ''
+      pattern: '^acs:ram::[0-9]*:role/.*$'
+      description: 应用所属的函数计算服务配置的 role, 请提前创建好对应的 role, 授信函数计算服务, 并配置好 AliyunOSSFullAccess 和 AliyunFCDefaultRolePolicy policy。
+      required: true
+      x-role:
+        name: fcffmpegrole
+        service: fc
+        authorities:
+          - AliyunOSSFullAccess
+          - AliyunFCDefaultRolePolicy
+    timeZone:
+      title: 时区
+      type: string
+      default: Asia/Shanghai
+      description: 创建的应用函数执行时候所在实例的时区, 详情参考 https://docs.oracle.com/middleware/12211/wcs/tag-ref/MISC/TimeZones.html
+      required: true

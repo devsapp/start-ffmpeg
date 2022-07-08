@@ -14,21 +14,23 @@
 # ------------------------------------
 
 edition: 1.0.0
-name: ffmpeg-rtmp-snapshot
+name: video-transcode
 # access 是当前应用所需要的密钥信息配置：
 # 密钥配置可以参考：https://www.serverless-devs.com/serverless-devs/command/config
 # 密钥使用顺序可以参考：https://www.serverless-devs.com/serverless-devs/tool#密钥使用顺序与规范
 access: "{{ access }}"
 
-
-vars: # 全局变量
-  region: cn-hangzhou
+vars:
+  region: "{{ region }}"
   service:
-    name: ffmpeg-rtmp-snapshot
-    description: 'ffmpeg get rtmp stream snapshot'
+    name: "{{ serviceName }}"
+    description: ffmpeg get rtmp stream snapshot
+    internetAccess: true
+    role: "{{ roleArn }}"
+    # logConfig: auto
 
 services:
-  browser_video_recorder_project: # 业务名称/模块名称
+  rtmp-snapshot: # 业务名称/模块名称
     component:  fc    # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
 #    actions:          # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
 #      pre-deploy:  # 在deploy之前运行
@@ -43,17 +45,50 @@ services:
       region: ${vars.region}
       service: ${vars.service}
       function:
-        name: screenshot
+        name: snapshot
         runtime: python3
         Handler: index.handler
-        codeUri: ./code
-        memorySize: 3072
-        timeout: 900
+        codeUri: ./code/snapshot
+        memorySize: 1536
+        timeout: 7200
         environmentVariables:
-          TZ: Asia/Shanghai
-          OSS_BUCKET_NAME: <your bucket>
-          OSS_AK_ID: <your ak id>
-          OSS_AK_SECRET: <your ak secret>
+          TZ: "{{ timeZone }}" 
+        asyncConfiguration:
+          destination:
+            # onSuccess: acs:fc:::services/${vars.service.name}/functions/dest-succ
+            onFailure: acs:fc:::services/${vars.service.name}/functions/dest-fail
+          maxAsyncEventAgeInSeconds: 18000
+          maxAsyncRetryAttempts: 2
+          statefulInvocation: true
+
+  dest-succ: # 业务名称/模块名称
+    component:  fc
+    props: #  组件的属性值
+      region: ${vars.region}
+      service: ${vars.service}
+      function:
+        name: dest-succ
+        description: 'async task destination success function by serverless devs'
+        runtime: python3
+        codeUri: ./code/succ
+        handler: index.handler
+        memorySize: 512
+        timeout: 60
+
+  dest-fail: # 业务名称/模块名称
+    component:  fc
+    props: #  组件的属性值
+      region: ${vars.region}
+      service: ${vars.service}
+      function:
+        name: dest-fail
+        description: 'async task destination fail function by serverless devs'
+        runtime: python3
+        codeUri: ./code/fail
+        handler: index.handler
+        memorySize: 512
+        timeout: 60
+
 #  next-function: # 第二个函数的案例，仅供参考
 #    # 如果在当前项目下执行 s deploy，会同时部署模块：
 #    #   helloworld：服务hello-world-service，函数cpp-event-function
