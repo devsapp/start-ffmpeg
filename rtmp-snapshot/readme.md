@@ -86,17 +86,32 @@ ffmpeg -i rtmp://101.200.48.101:1935/stream/example -f image2 -r 1 -strftime 1 /
 
 #### 调用函数
 
+1. 异步调用函数
+
 ```bash
-$ s invoke -e '{"rtmp_url" : "rtmp://101.200.48.101:1935/stream/example"}'
+$ s invoke -e '{"rtmp_url" : "rtmp://101.200.48.101:1935/stream/example", "bucket":"my-bucket", "region":"cn-hangzhou", "dst":"dst"}' --invocation-type async
 ```
 
-发起推流后， 函数执行是根据推流是否结束， 推流结束了， 然后函数里面的 ffmpeg 截图命令也就结束了， 最后将 /tmp 下面的图片保存回 oss， 该示例是保存回 s.yaml 中定义的 OSS_BUCKET_NAME 这个环境变量。
+其中：
 
-## 生产需要注意的点
+- **rtmp_url:** 必需， 直播流地址
 
-- 建议用户使用大规格实例， 执行时长更长
+- **bucket:** 必需, 保存截图文件的 bucket 名字
 
-- 如果有边截图， 边上传回 oss 的需求， 这个代码可以再优化下
+- **region:** 可选，bucket 的 region, 不填默认使用函数所在的 region
+
+- **dst:** 可选，保存截图文件 bucket 的指定目录, 不填默认为空， 即根目录
+
+发起推流后， 函数执行是根据推流是否结束， 推流结束了， 然后函数里面的 ffmpeg 截图命令也就结束了， 最后将 /tmp 下面的图片保存回 oss
+
+
+2. 登录[FC 控制台](https://fcnext.console.aliyun.com/)，查看截图任务函数执行详情
+
+![](https://img.alicdn.com/imgextra/i4/O1CN018E0DCi1X7FqlDnPSO_!!6000000002876-2-tps-1894-491.png)
+
+## 进阶
+
+如果有边截图， 边上传回 oss 的需求， 可以基于这个代码再优化下
 
 
 </appdetail>
