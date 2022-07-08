@@ -69,7 +69,7 @@ app.post('/invoke', (req, res) => {
       accessKeyId: process.env.OSS_AK_ID,
       accessKeySecret: process.env.OSS_AK_SECRET,
       bucket: process.env.OSS_BUCKET,
-      endpoint: process.env.OSS_ENDPOINT ,
+      endpoint: process.env.OSS_ENDPOINT,
     });
     store.put(outputFile, '/var/output/test.mp4').then((result) => {
       console.log("finish to upload video to oss");

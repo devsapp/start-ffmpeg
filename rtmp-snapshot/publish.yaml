@@ -2,7 +2,7 @@ Type: Application
 Name: rtmp-snapshot
 Provider:
   - 阿里云
-Version: 0.1.7
+Version: 0.1.8
 Description: 基于FFmpeg对直播视频流进行截图
 HomePage: https://github.com/devsapp/start-ffmpeg/tree/master/rtmp-snapshot
 Tags:

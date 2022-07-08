@@ -25,28 +25,23 @@ vars: # 全局变量
   service:
     name: browser_video_recorder
     description: 'Record a video for chrome browser'
+  functionName: recoder
 
 services:
   browser_video_recorder_project: # 业务名称/模块名称
     component:  fc    # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
-#    actions:          # 自定义执行逻辑，关于actions 的使用，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#行为描述
-#      pre-deploy:  # 在deploy之前运行
-#        - run: s version publish -a demo
-#          path: ./src
-#        - run: docker build xxx            # 要执行的系统命令，类似于一种钩子的形式
-#          path: ./src                      # 执行系统命令/钩子的路径
-#        - plugin: myplugin                 # 与运行的插件 （可以通过s cli registry search --type Plugin 获取组件列表）
-#          args:                            # 插件的参数信息
-#            testKey: testValue
+    actions:
+      post-deploy:
+        - component: fc api UpdateFunction --region ${vars.region} --header '{"x-fc-disable-container-reuse":"True"}' --path '{"serviceName":"${vars.service.name}","functionName":"${vars.functionName}"}'
     props:
       region: ${vars.region}
       service: ${vars.service}
       function:
-        name: recoder
+        name: ${vars.functionName}
         runtime: custom-container
         codeUri: ./code
         memorySize: 3072
-        timeout: 900
+        timeout: 7200
         customContainerConfig:
           image: registry-vpc.cn-hangzhou.aliyuncs.com/fc-demo/headless-ffmpeg:v2
         environmentVariables:
@@ -54,7 +49,8 @@ services:
           OSS_AK_ID: <your ak_id>
           OSS_AK_SECRET: <your ak_secret>
           OSS_BUCKET: <your bucket>
-          OSS_ENDPOINT: oss-cn-hangzhou.aliyuncs.com
+          OSS_ENDPOINT: oss-${vars.region}-internal.aliyuncs.com
+
 #  next-function: # 第二个函数的案例，仅供参考
 #    # 如果在当前项目下执行 s deploy，会同时部署模块：
 #    #   helloworld：服务hello-world-service，函数cpp-event-function

@@ -68,9 +68,7 @@ ffmpeg -re -i test.flv -vcodec copy -acodec aac -ar 44100 -f flv rtmp://101.200.
 
 播放器输入这个地址就可以查看了:
 
-rtmp://101.200.48.101:1935/stream/example
-
-![](https://img.alicdn.com/tfs/TB1hwoLpZVl614jSZKPXXaGjpXa-1040-876.png)
+`rtmp://101.200.48.101:1935/stream/example`
 
 比如， 截一张图:
 
@@ -86,7 +84,7 @@ ffmpeg -i rtmp://101.200.48.101:1935/stream/example -f image2 -r 1 -strftime 1 /
 
 #### 调用函数
 
-1. 异步调用函数
+##### 1. 异步调用函数
 
 ```bash
 $ s invoke -e '{"rtmp_url" : "rtmp://101.200.48.101:1935/stream/example", "bucket":"my-bucket", "region":"cn-hangzhou", "dst":"dst"}' --invocation-type async
@@ -105,7 +103,7 @@ $ s invoke -e '{"rtmp_url" : "rtmp://101.200.48.101:1935/stream/example", "bucke
 发起推流后， 函数执行是根据推流是否结束， 推流结束了， 然后函数里面的 ffmpeg 截图命令也就结束了， 最后将 /tmp 下面的图片保存回 oss
 
 
-2. 登录[FC 控制台](https://fcnext.console.aliyun.com/)，查看截图任务函数执行详情
+##### 2. 登录[FC 控制台](https://fcnext.console.aliyun.com/)，查看截图任务函数执行详情
 
 ![](https://img.alicdn.com/imgextra/i4/O1CN018E0DCi1X7FqlDnPSO_!!6000000002876-2-tps-1894-491.png)
 

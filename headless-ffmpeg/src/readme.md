@@ -20,8 +20,6 @@
 
 <table>
 
-
-
 </table>
 
 <codepre id="codepre">
@@ -52,7 +50,7 @@
 
 安装好 s 工具后，将 s.yaml 中镜像名字和环境变量修改：
 
-![](https://img.alicdn.com/imgextra/i4/O1CN01XBWdcb1K9SguCD6N1_!!6000000001121-2-tps-1057-617.png)
+![](https://img.alicdn.com/imgextra/i4/O1CN01kcXBSD1xbe8ktNtld_!!6000000006462-2-tps-1806-454.png)
 
 然后:
 
@@ -61,20 +59,10 @@ $ s build --use-docker --dockerfile ./code/Dockerfile
 $ s deploy --use-local -y
 
 # 测试调用
-$ s invoke -e '{"record_time":"35","video_url":"https://dy-vedio.oss-cn-hangzhou.aliyuncs.com/video/a.mp4","output_file":"record/test.mp4"}'
+$ s invoke -e '{"record_time":"35","video_url":"http://devsapp.functioncompute.com/video/a.mp4","output_file":"record/test.mp4"}'
 ```
 
-调用成功后， 会在对应的 bucket 下， 产生 record/test.mp4 这个视频
-
-## 注意事项
-
-1. 如果需要更大的执行时间：
-
-- 后台调整
-- 使用性能型实例
-
-2. 如果您 s deploy 失败的原因， 是由于镜像过大超过 1G, 请提工单，提供主账号 uid 和 region, 申请更大的镜像限制
-
+调用成功后， 会在对应的 bucket 下， 产生 record/test.mp4 这个 35 秒的视频。
 
 </appdetail>
 
