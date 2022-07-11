@@ -21,16 +21,20 @@ name: browser_video_recorder
 access: "{{ access }}"
 
 vars: # 全局变量
-  region: cn-hangzhou
+  region: "{{ region }}"
   service:
-    name: browser_video_recorder
+    name: "{{ serviceName }}"
+    role: "{{ roleArn }}"
     description: 'Record a video for chrome browser'
-  functionName: recoder
+    internetAccess: true
+  functionName: "{{ functionName }}"
 
 services:
   browser_video_recorder_project: # 业务名称/模块名称
     component:  fc    # 组件名称，Serverless Devs 工具本身类似于一种游戏机，不具备具体的业务能力，组件类似于游戏卡，用户通过向游戏机中插入不同的游戏卡实现不同的功能，即通过使用不同的组件实现不同的具体业务能力
     actions:
+      pre-deploy:
+        - component: fc build --use-docker --dockerfile ./code/Dockerfile
       post-deploy:
         - component: fc api UpdateFunction --region ${vars.region} --header '{"x-fc-disable-container-reuse":"True"}' --path '{"serviceName":"${vars.service.name}","functionName":"${vars.functionName}"}'
     props:
@@ -43,13 +47,13 @@ services:
         memorySize: 3072
         timeout: 7200
         customContainerConfig:
-          image: registry-vpc.cn-hangzhou.aliyuncs.com/fc-demo/headless-ffmpeg:v2
+          image: "{{ acrImage }}"
         environmentVariables:
-          TZ: Asia/Shanghai
-          OSS_AK_ID: <your ak_id>
-          OSS_AK_SECRET: <your ak_secret>
-          OSS_BUCKET: <your bucket>
+          OSS_AK_ID: "{{ ossAkID }}"
+          OSS_AK_SECRET: "{{ ossAkSecret }}"  
+          OSS_BUCKET: "{{ ossBucket }}" 
           OSS_ENDPOINT: oss-${vars.region}-internal.aliyuncs.com
+          TZ: "{{ timeZone }}"
 
 #  next-function: # 第二个函数的案例，仅供参考
 #    # 如果在当前项目下执行 s deploy，会同时部署模块：

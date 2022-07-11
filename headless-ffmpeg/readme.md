@@ -46,23 +46,13 @@
 
 <appdetail id="flushContent">
 
-# 应用详情
+# 调用函数
 
-安装好 s 工具后，将 s.yaml 中镜像名字和环境变量修改：
-
-![](https://img.alicdn.com/imgextra/i4/O1CN01kcXBSD1xbe8ktNtld_!!6000000006462-2-tps-1806-454.png)
-
-然后:
-
-```bash
-$ s build --use-docker --dockerfile ./code/Dockerfile
-$ s deploy --use-local -y
-
-# 测试调用
+``` bash
 $ s invoke -e '{"record_time":"35","video_url":"http://devsapp.functioncompute.com/video/a.mp4","output_file":"record/test.mp4"}'
 ```
 
-调用成功后， 会在对应的 bucket 下， 产生 record/test.mp4 这个 35 秒的视频。
+调用成功后， 会在对应的 bucket 下， 产生 record/test.mp4 这个 35 秒的全景录制视频。
 
 </appdetail>
 
