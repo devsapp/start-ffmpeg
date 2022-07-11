@@ -2,7 +2,7 @@ Type: Application
 Name: headless-ffmpeg
 Provider:
   - 阿里云
-Version: 0.1.8
+Version: 0.1.9
 Description: 快速部署一个全景录制的应用到阿里云函数计算
 HomePage: https://github.com/devsapp/start-ffmpeg/tree/master/headless-ffmpeg
 Tags:
@@ -79,7 +79,7 @@ Parameters:
       title: ACR Image
       type: string
       default: ''
-      description: 阿里云容器镜像服务 image 的名字，比如 registry-vpc.cn-hangzhou.aliyuncs.com/fc-demo/headless-ffmpeg:v1
+      description: 阿里云容器镜像服务 image 的名字，比如 registry.cn-hangzhou.aliyuncs.com/fc-demo/headless-ffmpeg:v1
     ossBucket:
       title: OSS 存储桶名
       type: string
