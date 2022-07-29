@@ -2,7 +2,7 @@ Type: Application
 Name: rtmp-snapshot
 Provider:
   - 阿里云
-Version: 0.1.8
+Version: 0.1.9
 Description: 基于FFmpeg对直播视频流进行截图
 HomePage: https://github.com/devsapp/start-ffmpeg/tree/master/rtmp-snapshot
 Tags:
@@ -50,7 +50,8 @@ Parameters:
     serviceName:
       title: 服务名
       type: string
-      default: rtmp-snapshot
+      default: rtmp-snapshot-${default-suffix}
+      pattern: "^[a-zA-Z_][a-zA-Z0-9-_]{0,127}$"
       description: 应用所属的函数计算服务
       required: true
     roleArn:
