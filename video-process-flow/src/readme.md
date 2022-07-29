@@ -14,7 +14,7 @@
 
 <description>
 
-> ***图片压缩功能***
+> ***基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务***
 
 </description>
 
