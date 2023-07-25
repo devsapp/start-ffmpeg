@@ -19,7 +19,17 @@ def get_fileNameExt(filename):
 
 def handler(event, context):
     LOGGER.info(event)
-    evt = json.loads(event)
+    # evt = json.loads(event)
+
+    try:
+        request_body_size = int(event.get('CONTENT_LENGTH', 0))
+    except (ValueError):
+        request_body_size = 0
+    request_body = event['wsgi.input'].read(request_body_size)
+
+    evt = json.loads(request_body)
+    context = event['fc.context']
+
     oss_bucket_name = evt["bucket"]
     object_key = evt["object"]
     output_dir = evt["output_dir"]
