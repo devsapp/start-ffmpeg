@@ -1,5 +1,5 @@
 
-> 注：当前项目为 Serverless Devs 应用，由于应用中会存在需要初始化才可运行的变量（例如应用部署地区、函数名等等），所以**不推荐**直接 Clone 本仓库到本地进行部署或直接复制 s.yaml 使用，**强烈推荐**通过 `s init ` 的方法或应用中心进行初始化，详情可参考[部署 & 体验](#部署--体验) 。
+> 注：当前项目为 Serverless Devs 应用，由于应用中会存在需要初始化才可运行的变量（例如应用部署地区、函数名等等），所以**不推荐**直接 Clone 本仓库到本地进行部署或直接复制 s.yaml 使用，**强烈推荐**通过 `s init --project ${模版名称}` 的方法或应用中心进行初始化，详情可参考[部署 & 体验](#部署--体验) 。
 
 # video-transcode-v3 帮助文档
 <p align="center" class="flex justify-center">
@@ -22,7 +22,7 @@
 
 <codeUrl>
 
-- [:smiley_cat: 代码](https://github.com/devsapp/start-ffmpeg/tree/master/transcode/src)
+- [:smiley_cat: 代码](https://github.com/devsapp/start-ffmpeg/tree/V3/transcode/src)
 
 </codeUrl>
 <preview>
@@ -90,41 +90,36 @@
 
 <appdetail id="flushContent">
 
-# 应用详情
-
 1. 发起 5 次异步任务函数调用
 
 ```bash
-$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"mov"}' --invocation-type async   --stateful-async-invocation-id my1-480P-mp4
+$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"mov"}' --invocation-type async   
 VideoTranscoder/transcode async invoke success.
 request id: bf7d7745-886b-42fc-af21-ba87d98e1b1c
 
-$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"mov"}' --invocation-type async   --stateful-async-invocation-id my2-480P-mp4
+$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"mov"}' --invocation-type async  
 VideoTranscoder/transcode async invoke success.
 request id: edb06071-ca26-4580-b0af-3959344cf5c3
 
-$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"flv"}' --invocation-type async   --stateful-async-invocation-id my3-480P-mp4
+$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"flv"}' --invocation-type async  
 VideoTranscoder/transcode async invoke success.
 request id: 41101e41-3c0a-497a-b63c-35d510aef6fb
 
-$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"avi"}' --invocation-type async   --stateful-async-invocation-id my4-480P-mp4
+$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"avi"}' --invocation-type async 
 VideoTranscoder/transcode async invoke success.
 request id: ff48cc04-c61b-4cd3-ae1b-1aaaa1f6c2b2
 
-$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"m3u8"}' --invocation-type async   --stateful-async-invocation-id my5-480P-mp4
+$ s VideoTranscoder invoke -e '{"bucket":"my-bucket", "object":"480P.mp4", "output_dir":"a", "dst_format":"m3u8"}' --invocation-type async
 VideoTranscoder/transcode async invoke success.
 request id: d4b02745-420c-4c9e-bc05-75cbdd2d010f
-
 ```
 
-2. 登录[FC 控制台](https://fcnext.console.aliyun.com/)
+2. 登录[FC 控制台](https://fcnext.console.aliyun.com/) 查看异步调用详情
 
-![](https://img.alicdn.com/imgextra/i4/O1CN01jN5xQl1oUvle8aXFq_!!6000000005229-2-tps-1795-871.png)
 
 可以清晰看出每一次转码任务的执行情况:
 
-- A 视频是什么时候开始转码的, 什么时候转码结束
-- B 视频转码任务不太符合预期， 我中途可以点击停止调用
+- 视频是什么时候开始转码的, 什么时候转码结束
 - 通过调用状态过滤和时间窗口过滤，我可以知道现在有多少个任务正在执行， 历史完成情况是怎么样的
 - 可以追溯每次转码任务执行日志和触发payload
 - 当您的转码函数有异常时候， 会触发 dest-fail 函数的执行，您在这个函数可以添加您自定义的逻辑， 比如报警
@@ -134,7 +129,7 @@ request id: d4b02745-420c-4c9e-bc05-75cbdd2d010f
 
 > 在本地使用该项目时，不仅可以部署，还可以进行更多的操作，例如查看日志，查看指标，进行多种模式的调试等，这些操作详情可以参考[函数计算组件命令文档](https://github.com/devsapp/fc#%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3) ;
 
-## 应用详情
+## 应用优势
 
 本项目是基于函数计算打造一个 **Serverless架构的弹性高可用音视频处理系统**, 并且拥有以下优势:
 
@@ -151,7 +146,6 @@ request id: d4b02745-420c-4c9e-bc05-75cbdd2d010f
 * 成本极具竞争力。
 
 
-<!-- -->
 ### 相较于通用的转码处理服务的优点
 
 * 超强自定义，对用户透明，基于FFmpeg或其他音视频处理工具命令快速开发相应的音视频处理逻辑。

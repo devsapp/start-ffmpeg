@@ -3,9 +3,9 @@ Type: Project
 Name: video-transcode-v3
 Provider:
   - 阿里云
-Version: 0.0.4
+Version: 0.0.5
 Description: 快速部署音视频转码的应用到阿里云函数计算
-HomePage: https://github.com/devsapp/start-ffmpeg/tree/master/transcode
+HomePage: https://github.com/devsapp/start-ffmpeg
 Organization: 阿里云函数计算（FC）
 Effective: Public
 Tags:
@@ -45,6 +45,7 @@ Parameters:
         - ap-southeast-3
         - ap-southeast-5
         - ap-northeast-1
+        - ap-northeast-2
         - eu-central-1
         - eu-west-1
         - us-west-1
@@ -60,16 +61,13 @@ Parameters:
       title: RAM角色ARN
       type: string
       default: ""
-      description: "函数计算访问其他云服务时使用的服务角色，需要填写具体的角色名称或ARN，ARN格式为acs:ram::$account-id>:role/$role-name。例如：acs:ram::14310000000:role/aliyunfcdefaultrole。
-      \n如果您没有特殊要求，可以使用函数计算提供的默认的服务角色，即AliyunFCDefaultRole, 并增加 AliyunOSSFullAccess 权限。如果您首次使用函数计算，可以访问 https://fcnext.console.aliyun.com 进行授权。
-      \n详细文档参考 https://help.aliyun.com/document_detail/181589.html#section-o93-dbr-z6o"
+      description: "函数计算访问对象存储 OOS 服务时使用的服务角色"
       required: true
       x-role:
-        name: fcffmpegrole
+        name: fcossrole
         service: fc
         authorities:
           - AliyunOSSFullAccess
-          - AliyunFCDefaultRolePolicy
     timeZone:
       title: 时区
       type: string

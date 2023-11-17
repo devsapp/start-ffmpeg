@@ -1,56 +1,87 @@
-# ffmpeg-app 帮助文档
+> 注：当前项目为 Serverless Devs 应用，由于应用中会存在需要初始化才可运行的变量（例如应用部署地区、函数名等等），所以**不推荐**直接 Clone 本仓库到本地进行部署或直接复制 s.yaml 使用，**强烈推荐**通过 `s init --project ${模版名称}` 的方法或应用中心进行初始化，详情可参考[部署 & 体验](#部署--体验) 。
+
+# ffmpeg-app-v3 帮助文档
 
 <p align="center" class="flex justify-center">
     <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app&type=packageType">
+    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app-v3&type=packageType">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=ffmpeg-app" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app&type=packageVersion">
+  <a href="http://www.devsapp.cn/details.html?name=ffmpeg-app-v3" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app-v3&type=packageVersion">
   </a>
-  <a href="http://www.devsapp.cn/details.html?name=ffmpeg-app" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app&type=packageDownload">
+  <a href="http://www.devsapp.cn/details.html?name=ffmpeg-app-v3" class="ml-1">
+    <img src="http://editor.devsapp.cn/icon?package=ffmpeg-app-v3&type=packageDownload">
   </a>
 </p>
 
 <description>
 
-> ***基于FFmpeg的音视频处理应用, 包括获取音视频元信息、获取音视频时长、音频转换、雪碧图生成、生成 GIF、打水印等多个模块。***
+基于 FFmpeg 的音视频处理应用, 包括获取音视频元信息、获取音视频时长、音频转换、雪碧图生成、生成 GIF、打水印等多个模块。
 
 </description>
 
-<table>
+<codeUrl>
 
+- [:smiley_cat: 代码](https://github.com/devsapp/start-ffmpeg/tree/V3/ffmpeg-app/src)
 
+</codeUrl>
+<preview>
 
-</table>
+</preview>
 
-<codepre id="codepre">
+## 前期准备
 
-</codepre>
+使用该项目，您需要有开通以下服务：
 
-<deploy>
+<service>
+
+| 服务         | 备注                                             |
+| ------------ | ------------------------------------------------ |
+| 函数计算 FC  | 基于 FFmpeg 的音视频处理的函数需要部署到函数计算 |
+| 对象存储 OSS | 待处理的音视频或者处理后的音视频存储在对象存储   |
+
+</service>
+
+推荐您拥有以下的产品权限 / 策略：
+<auth>
+
+| 服务/业务 | 权限               | 备注                                             |
+| --------- | ------------------ | ------------------------------------------------ |
+| 函数计算  | AliyunFCFullAccess | 基于 FFmpeg 的音视频处理的函数需要部署到函数计算 |
+
+</auth>
+
+<remark>
+
+</remark>
+
+<disclaimers>
+
+</disclaimers>
 
 ## 部署 & 体验
 
 <appcenter>
-
-- :fire: 通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=ffmpeg-app) ，
-[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=ffmpeg-app)  该应用。 
-
+   
+- :fire: 通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=ffmpeg-app-v3) ，
+  [![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=ffmpeg-app-v3) 该应用。
+   
 </appcenter>
-
+<deploy>
+    
 - 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
-    - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://www.serverless-devs.com/fc/config) ；
-    - 初始化项目：`s init ffmpeg-app -d ffmpeg-app`   
-    - 进入项目，并进行项目部署：`cd ffmpeg-app && s deploy -y`
-
+  - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://docs.serverless-devs.com/fc/config) ；
+  - 初始化项目：`s init --project ffmpeg-app-v3 -d ffmpeg-app-v3`
+  - 进入项目，并进行项目部署：`cd ffmpeg-app-v3 && s deploy -y`
+   
 </deploy>
+
+## 应用详情
 
 <appdetail id="flushContent">
 
-# 应用详情
-
 如果部署完整项目可以直接使用`s deploy`，如果想要部署单个项目，可以：
+
 - AudioConvert: 音频格式转换器
 - GetMediaMeta: 获取音视频 meta
 - GetDuration: 获取音视频时长
@@ -85,7 +116,6 @@
 - 执行时间：每月前 400000(CU-秒) 费用免费。
 
 详情：[函数计算计费](https://help.aliyun.com/document_detail/54301.html)
-
 
 ### 函数使用详情
 
@@ -127,25 +157,6 @@
 $ s GetMediaMeta invoke -e '{"bucket_name": "test-bucket","object_key": "a.mp4"}'
 ```
 
-**python sdk 调用函数示例:**
-
-```python
-# -*- coding: utf-8 -*-
-import fc2
-import json
-
-client = fc2.Client(endpoint="http://1123456.cn-hangzhou.fc.aliyuncs.com",accessKeyID="xxxxxxxx",accessKeySecret="yyyyyy")
-
-resp = client.invoke_function("FcOssFFmpeg", "GetMediaMeta", payload=json.dumps(
-{
-    "bucket_name" : "test-bucket",
-    "object_key" : "a.mp4"
-})).data
-
-print(resp)
-
-```
-
 <a name="get_duration"></a>
 
 ## get_duration 获取音视频时长
@@ -171,25 +182,6 @@ print(resp)
 $ s GetDuration invoke -e '{"bucket_name": "test-bucket","object_key": "a.mp4"}'
 ```
 
-**python sdk 调用函数示例:**
-
-```python
-# -*- coding: utf-8 -*-
-import fc2
-import json
-
-client = fc2.Client(endpoint="http://1123456.cn-hangzhou.fc.aliyuncs.com",accessKeyID="xxxxxxxx",accessKeySecret="yyyyyy")
-
-resp = client.invoke_function("FcOssFFmpeg", "GetDuration", payload=json.dumps(
-{
-    "bucket_name" : "test-bucket",
-    "object_key" : "a.mp4"
-})).data
-
-print(resp)
-
-```
-
 <a name="get_sprites"></a>
 
 ## get_sprites 功能强大雪碧图制作函数
@@ -213,6 +205,7 @@ print(resp)
 }
 ```
 
+- output_dir: 必填
 - tile: 必填， 雪碧图的 rows \* cols
 - start: 可选， 默认是为 0
 - duration: 可选，表示基于 start 之后的多长时间的视频内进行截图，
@@ -245,26 +238,6 @@ print(resp)
 
 ```bash
 $ s GetSprites invoke -e '{"bucket_name": "qd-style2paints","object_key": "video/480P.mp4", "output_dir" : "output/", "tile": "3*4"}'
-```
-
-**python sdk 调用函数示例:**
-
-```python
-# -*- coding: utf-8 -*-
-import fc2
-import json
-
-client = fc2.Client(endpoint="http://1123456.cn-hangzhou.fc.aliyuncs.com",accessKeyID="xxxxxxxx",accessKeySecret="yyyyyy")
-
-resp = client.invoke_function("FcOssFFmpeg", "GetSprites", payload=json.dumps(
-{
-    "bucket_name" : "test-bucket",
-    "object_key" : "a.mp4",
-    "output_dir" : "output/"
-})).data
-
-print(resp)
-
 ```
 
 <a name="video_watermark"></a>
@@ -315,27 +288,6 @@ print(resp)
 $ s VideoWatermark invoke -e '{"bucket_name": "test-bucket","object_key": "a.mp4", "output_dir" : "output/", "vf_args" : "drawtext=fontfile=/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc:text='hello函数计算':x=100:y=50:fontsize=24:fontcolor=red"}'
 ```
 
-**python sdk 调用函数示例:**
-
-```python
-# -*- coding: utf-8 -*-
-import fc2
-import json
-
-client = fc2.Client(endpoint="http://1123456.cn-hangzhou.fc.aliyuncs.com",accessKeyID="xxxxxxxx",accessKeySecret="yyyyyy")
-
-resp = client.invoke_function("FcOssFFmpeg", "VideoWatermark", payload=json.dumps(
-{
-    "bucket_name" : "test-bucket",
-    "object_key" : "a.mp4",
-     "output_dir" : "output/",
-    "vf_args" : "drawtext=fontfile=/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc:text='hello函数计算':x=100:y=50:fontsize=24:fontcolor=red"
-})).data
-
-print(resp)
-
-```
-
 <a name="video_gif"></a>
 
 ## video_gif 功能强大的 video 提取为 gif 函数
@@ -375,26 +327,6 @@ print(resp)
 $ s VideoGif invoke -e '{"bucket_name": "test-bucket","object_key": "a.mp4", "output_dir" : "output/"}'
 ```
 
-**python sdk 调用函数示例:**
-
-```python
-# -*- coding: utf-8 -*-
-import fc2
-import json
-
-client = fc2.Client(endpoint="http://1123456.cn-hangzhou.fc.aliyuncs.com",accessKeyID="xxxxxxxx",accessKeySecret="yyyyyy")
-
-resp = client.invoke_function("FcOssFFmpeg", "VideoGif", payload=json.dumps(
-{
-    "bucket_name" : "test-bucket",
-    "object_key" : "a.mp4",
-    "output_dir" : "output/",
-})).data
-
-print(resp)
-
-```
-
 <a name="audio_convert"></a>
 
 ## audio_convert: 音频格式转换器
@@ -422,31 +354,12 @@ print(resp)
 
 生成目标格式的音频文件，保存到 bucket 的该目录( `output_dir + "/" + dir(object_key)` )中
 
-**python sdk 调用函数示例:**
-
-```python
-# -*- coding: utf-8 -*-
-import fc2
-import json
-
-client = fc2.Client(endpoint="http://1123456.cn-hangzhou.fc.aliyuncs.com",accessKeyID="xxxxxxxx",accessKeySecret="yyyyyy")
-
-resp = client.invoke_function("FcOssFFmpeg", "audio_convert", payload=json.dumps(
-{
-    "bucket_name" : "test-bucket",
-    "object_key" : "a.mp3",
-    "output_dir" : "output/",
-    "dst_type": ".wav",
-    "ac": 1,
-    "ar": 8000,
-})).data
-
-print(resp)
-
-```
-
-
 </appdetail>
+
+## 使用文档
+
+<usedetail id="flushContent">
+</usedetail>
 
 <devgroup>
 
@@ -457,9 +370,8 @@ print(resp)
 <p align="center">
 
 | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407298906_20211028074819117230.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407044136_20211028074404326599.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407252200_20211028074732517533.png" width="130px" > |
-|--- | --- | --- |
-| <center>微信公众号：\`serverless\`</center> | <center>微信小助手：\`xiaojiangwh\`</center> | <center>钉钉交流群：\`33947367\`</center> | 
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| <center>微信公众号：`serverless`</center>                                                                                         | <center>微信小助手：`xiaojiangwh`</center>                                                                                        | <center>钉钉交流群：`33947367`</center>                                                                                           |
 
 </p>
-
 </devgroup>
