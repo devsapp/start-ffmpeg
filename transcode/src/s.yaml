@@ -18,7 +18,7 @@ access: '{{ access }}'
 vars:
   region: '{{ region }}'
 resources:
-  VideoTranscoder:
+  video_transcoder:
     component: fc3
     props:
       region: ${vars.region}
@@ -35,10 +35,12 @@ resources:
       asyncInvokeConfig:
         maxAsyncEventAgeInSeconds: 18000
         maxAsyncRetryAttempts: 2
+        asyncTask: true
         destinationConfig:
           onFailure:
             destination: acs:fc:${this.props.region}::functions/dest-fail
-  dest-succ:
+        
+  dest_succ:
     component: fc3
     props:
       region: ${vars.region}
@@ -49,7 +51,8 @@ resources:
       timeout: 60
       functionName: dest-succ
       code: ./code/succ
-  dest-fail:
+
+  dest_fail:
     component: fc3
     props:
       region: ${vars.region}
