@@ -58,5 +58,5 @@ def handler(event, context):
         os.remove(transcoded_filepath)
 
     exec_FFmpeg_cmd(['ffmpeg', '-y', '-i', input_path, transcoded_filepath])
-    return {}
+    return evt
     

@@ -1,0 +1,117 @@
+Type: StateMachine
+Name: ${vars.flowName}
+SpecVersion: v1
+Description: Serverless workflow video processing
+StartAt: Split
+States:
+  - Action: FC:InvokeFunction
+    Type: Task
+    TaskMode: RequestComplete
+    Name: Split
+    Parameters:
+      resourceArn: acs:fc:::functions/${vars.flowName}_split
+      body.$: $Input
+    Next: ParallelTranscode
+    OutputConstructor:
+      split_keys.$: $Output.Body.split_keys
+      video_proc_dir.$: $Output.Body.video_proc_dir
+      dst_formats.$: $Output.Body.dst_formats
+    Retry:
+      - Errors:
+          - FC.ResourceThrottled
+          - FC.ResourceExhausted
+          - FC.InternalServerError
+          - FnF.TaskTimeout
+          - FC.Unknown
+        IntervalSeconds: 3
+        MaxAttempts: 16
+        BackoffRate: 2
+  - Type: Map
+    Name: ParallelTranscode
+    ItemsPath: $Input.dst_formats
+    Next: after-process
+    InputConstructor:
+      split_keys.$: $Input.split_keys
+      video_proc_dir.$: $Input.video_proc_dir
+      dst_formats.$: $Input.dst_formats
+    OutputConstructor:
+      video_proc_dir.$: $Input.video_proc_dir
+    Processor:
+      StartAt: Transcode_splits
+      States:
+        - ItemsPath: $Input.split_keys
+          OutputConstructor:
+            Items.$: $Output.Items
+            format.$: $Input.format
+            split_keys.$: $Input.split_keys
+            video_proc_dir.$: $Input.video_proc_dir
+          Name: Transcode_splits
+          Next: Merge
+          Processor:
+            StartAt: Transcode
+            States:
+              - Action: FC:InvokeFunction
+                End: true
+                TaskMode: RequestComplete
+                Name: Transcode
+                Parameters:
+                  resourceArn: acs:fc:::functions/${vars.flowName}_transcode
+                  body:
+                    split_video_key.$: $Input.filekey
+                    target_type.$: $Input.format
+                    video_proc_dir.$: $Input.video_proc_dir
+                Retry:
+                  - Errors:
+                      - FC.ResourceThrottled
+                      - FC.ResourceExhausted
+                      - FC.InternalServerError
+                      - FnF.TaskTimeout
+                      - FC.Unknown
+                    IntervalSeconds: 3
+                    MaxAttempts: 16
+                    BackoffRate: 2
+                Type: Task
+          Type: Map
+        - Action: FC:InvokeFunction
+          End: true
+          Name: Merge
+          TaskMode: RequestComplete
+          InputConstructor:
+            video_key.$: $Context.Execution.Input.video_key
+            oss_bucket_name.$: $Context.Execution.Input.oss_bucket_name
+            split_keys.$: $Input.split_keys
+            output_prefix.$: $Context.Execution.Input.output_prefix
+            target_type.$: $Input.format
+            video_proc_dir.$: $Input.video_proc_dir
+          Parameters:
+            resourceArn: acs:fc:::functions/${vars.flowName}_merge
+            body.$: $Input
+          Retry:
+            - Errors:
+                - FC.ResourceThrottled
+                - FC.ResourceExhausted
+                - FC.InternalServerError
+                - FnF.TaskTimeout
+                - FC.Unknown
+              IntervalSeconds: 3
+              MaxAttempts: 16
+              BackoffRate: 2
+          Type: Task
+  - Type: Task
+    Action: FC:InvokeFunction
+    TaskMode: RequestComplete
+    End: true
+    Name: after-process
+    Parameters:
+      resourceArn: acs:fc:::functions/${vars.flowName}_after-process
+      body.$: $Input
+    Retry:
+      - Errors:
+          - FC.ResourceThrottled
+          - FC.ResourceExhausted
+          - FC.InternalServerError
+          - FnF.TaskTimeout
+          - FC.Unknown
+        IntervalSeconds: 3
+        MaxAttempts: 16
+        BackoffRate: 2

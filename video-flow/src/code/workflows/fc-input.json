@@ -1,0 +1,12 @@
+{
+  "oss_bucket_name": "tt0126",
+  "video_key": "source/fnf-test.mov",
+  "output_prefix": "outputs",
+  "segment_time_seconds": 15,
+  "dst_formats": [
+    "mp4",
+    "flv"
+  ]
+}
+
+// oss-trigger-workflow 设置 oss触发器，设置前缀为 source，避免无限循环

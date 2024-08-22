@@ -14,7 +14,7 @@ LOGGER = logging.getLogger()
 
 MAX_SPLIT_NUM = 100
 
-NAS_ROOT = "/mnt/auto/"
+NAS_ROOT = "/mnt/{}/".format(os.environ['FC_FUNCTION_NAME'])
 
 class FFmpegError(Exception):
     def __init__(self, message, status):
@@ -65,7 +65,8 @@ def handler(event, context):
     video_key = evt['video_key']
     oss_bucket_name = evt['oss_bucket_name']
     segment_time_seconds = str(evt['segment_time_seconds'])
-    
+    dst_formats = evt['dst_formats']
+
     shortname, extension = get_fileNameExt(video_key)
     video_name = shortname + extension
     
@@ -95,9 +96,31 @@ def handler(event, context):
     for filename in os.listdir(video_proc_dir):
         if filename.startswith('split_' + shortname):
             filekey = os.path.join(video_proc_dir, filename)
-            split_keys.append(filekey)
+            split_keys.append(
+            {
+              "filekey": filekey
+            })
+
+    new_dst_formats = []
+
+    for df in dst_formats:
+
+        new_sks = []
+        for sk in split_keys:
+            new_sks.append({
+               "filekey": sk["filekey"],
+               "video_proc_dir": video_proc_dir,
+               "format": df
+            })
+
+        new_dst_formats.append(
+        {
+          "format": df,
+          "video_proc_dir": video_proc_dir,
+          "split_keys": new_sks
+        })
 
     return {
-        "split_keys": split_keys, 
-        "video_proc_dir": video_proc_dir
+        "video_proc_dir": video_proc_dir,
+        "dst_formats": new_dst_formats
     }

@@ -59,10 +59,10 @@ def handler(event, context):
     output_prefix = evt['output_prefix']
     video_type = evt['target_type']
     video_process_dir = evt['video_proc_dir']
-    
+
     transcoded_split_keys = []
     for k in split_keys:
-        fileDir, shortname, extension = get_fileNameExt(k)
+        fileDir, shortname, extension = get_fileNameExt(k['filekey'])
         transcoded_filename = 'transcoded_%s.%s' % (shortname, video_type)
         transcoded_filepath = os.path.join(fileDir, transcoded_filename)
         transcoded_split_keys.append(transcoded_filepath)
@@ -75,12 +75,12 @@ def handler(event, context):
 
     if len(transcoded_split_keys) == 0:
         raise Exception("no transcoded_split_keys")
-    
+
     LOGGER.info({
         "target_type": video_type,
         "transcoded_split_keys": transcoded_split_keys
     })
-    
+
     _, shortname, extension = get_fileNameExt(video_key)
     segs_filename = 'segs_%s.txt' % (shortname + video_type)
     segs_filepath = os.path.join(video_process_dir, segs_filename)

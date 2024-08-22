@@ -1,0 +1,105 @@
+edition: 3.0.0
+name: multimedia-process-flow-v3
+access: '{{ access }}'
+vars:
+  region: '{{ region }}'
+  flowName: '{{ flowName }}'
+  role: '{{ functionRoleArn }}'
+
+resources:
+  split:
+    component: fc3
+    props:
+      region: ${vars.region}
+      handler: index.handler
+      timeout: 600
+      memorySize: 3072
+      runtime: python3
+      functionName: ${vars.flowName}_split
+      role: ${vars.role}
+      code: code/split
+      vpcConfig: auto
+      nasConfig: auto
+      
+  
+  transcode:
+    component: fc3
+    props:
+      region: ${vars.region}
+      handler: index.handler
+      timeout: 600
+      memorySize: 3072
+      runtime: python3
+      functionName: ${vars.flowName}_transcode
+      role: ${vars.role}
+      code: code/transcode
+      vpcConfig: ${resources.split.output.vpcConfig}
+      nasConfig: ${resources.split.output.nasConfig}
+    
+  merge:
+    component: fc3
+    props:
+      region: ${vars.region}
+      handler: index.handler
+      timeout: 600
+      memorySize: 3072
+      runtime: python3
+      functionName: ${vars.flowName}_merge
+      role: ${vars.role}
+      code: code/merge
+      vpcConfig: ${resources.split.output.vpcConfig}
+      nasConfig: ${resources.split.output.nasConfig}
+
+  after-process:
+    component: fc3
+    props:
+      region: ${vars.region}
+      handler: index.handler
+      timeout: 120
+      memorySize: 512
+      runtime: python3
+      functionName: ${vars.flowName}_after-process
+      role: ${vars.role}
+      code: code/after-process
+      vpcConfig: ${resources.split.output.vpcConfig}
+      nasConfig: ${resources.split.output.nasConfig}
+
+  oss-trigger-workflow:
+    component: fc3
+    props:
+      region: ${vars.region}
+      handler: index.handler
+      timeout: 120
+      memorySize: 128
+      runtime: python3
+      environmentVariables:
+        OUTPUT_DST: '{{ outputDir }}'
+        FLOW_NAME: ${vars.flowName}
+        SEG_INTERVAL: '{{ segInterval }}'
+        DST_FORMATS: '{{ dstFormats }}'
+      functionName: ${vars.flowName}_oss-trigger-workflow
+      role: ${vars.role}
+      code: code/oss-trigger
+      triggers:
+        - triggerName: ${vars.flowName}
+          triggerType: oss
+          triggerConfig:
+            events:
+              - oss:ObjectCreated:PutObject
+              - oss:ObjectCreated:PostObject
+              - oss:ObjectCreated:CompleteMultipartUpload
+            filter:
+              key:
+                prefix: '{{ prefix }}'
+                suffix: ''
+          invocationRole: '{{ triggerRoleArn }}'
+          sourceArn: acs:oss:${this.props.region}:${config("AccountID")}:{{ ossBucket }}
+
+  multimedia-process-v3-workflow:
+    component: flow
+    props:
+      name: ${vars.flowName}
+      region: ${vars.region}
+      description: Serverless workflow video process
+      definition: ${yaml(file('code/workflows/multimedia-process-workflow.yml'))}
+      roleArn: '{{ fnfRoleArn }}'
