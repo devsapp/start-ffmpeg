@@ -1,5 +1,5 @@
 edition: 3.0.0
-name: multimedia-process-flow-v3
+name: multimedia-process-flow
 access: '{{ access }}'
 vars:
   region: '{{ region }}'
@@ -20,7 +20,6 @@ resources:
       code: code/split
       vpcConfig: auto
       nasConfig: auto
-      
   
   transcode:
     component: fc3
@@ -100,6 +99,6 @@ resources:
     props:
       name: ${vars.flowName}
       region: ${vars.region}
-      description: Serverless workflow video process
+      description: video process flow = split->transcode->merge->${resources.after-process.output.functionName}
       definition: ${yaml(file('code/workflows/multimedia-process-workflow.yml'))}
       roleArn: '{{ fnfRoleArn }}'

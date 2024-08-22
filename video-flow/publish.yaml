@@ -1,11 +1,11 @@
 Edition: 3.0.0
 Type: Project
-Name: multimedia-process-flow-v3
-Version:  0.0.4
+Name: multimedia-process-flow-dipper
+Version:  0.0.1
 Provider:
   - 阿里云
 Description: 基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务
-HomePage: https://github.com/devsapp/start-ffmpeg/tree/master/multimedia-process-flow
+HomePage: https://github.com/devsapp/start-ffmpeg/tree/dipper/video-flow
 Effective: Public
 Tags:
   - flow

@@ -1,0 +1,12 @@
+services: #服务变量
+  oss-trigger-workflow: 
+    segInterval:
+      title: 对视频进行分片处理的分片时间
+      type: string
+      default: "30"
+      description: 对视频进行分片处理的分片时间，单位为秒
+    dstFormats:
+      title: 转码后的视频格式
+      type: string
+      default: mp4, flv, avi
+      description: 转码后的视频格式，如果有需要输出多种格式， 使用逗号分隔

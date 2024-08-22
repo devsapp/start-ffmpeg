@@ -1,11 +1,11 @@
 Edition: 3.0.0
 Type: Project
-Name: video-transcode-v3
+Name: video-transcode-dipper
 Provider:
   - 阿里云
-Version: 0.0.8
+Version: 0.0.1
 Description: 快速部署音视频转码的应用到阿里云函数计算
-HomePage: https://github.com/devsapp/start-ffmpeg
+HomePage: https://github.com/devsapp/start-ffmpeg/tree/dipper/transcode
 Organization: 阿里云函数计算（FC）
 Effective: Public
 Tags:

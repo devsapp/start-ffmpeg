@@ -1,18 +1,7 @@
 
 > 注：当前项目为 Serverless Devs 应用，由于应用中会存在需要初始化才可运行的变量（例如应用部署地区、函数名等等），所以**不推荐**直接 Clone 本仓库到本地进行部署或直接复制 s.yaml 使用，**强烈推荐**通过 `s init ${模版名称}` 的方法或应用中心进行初始化，详情可参考[部署 & 体验](#部署--体验) 。
 
-# video-transcode-v3 帮助文档
-<p align="center" class="flex justify-center">
-    <a href="https://www.serverless-devs.com" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=video-transcode-v3&type=packageType">
-  </a>
-  <a href="http://www.devsapp.cn/details.html?name=video-transcode-v3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=video-transcode-v3&type=packageVersion">
-  </a>
-  <a href="http://www.devsapp.cn/details.html?name=video-transcode-v3" class="ml-1">
-    <img src="http://editor.devsapp.cn/icon?package=video-transcode-v3&type=packageDownload">
-  </a>
-</p>
+# video-transcode-dipper 帮助文档
 
 <description>
 
@@ -21,8 +10,6 @@
 </description>
 
 <codeUrl>
-
-- [:smiley_cat: 代码](https://github.com/devsapp/start-ffmpeg/tree/V3/transcode/src)
 
 </codeUrl>
 <preview>
@@ -62,17 +49,11 @@
 
 <appcenter>
    
-- :fire: 通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=video-transcode-v3) ，
-  [![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=video-transcode-v3) 该应用。
+:fire: 通过 [Dipper 应用中心](https://devs.console.aliyun.com/applications/createtemplate=video-transcode-dipper) ，[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://devs.console.aliyun.com/applications/createtemplate=video-transcode-dipper) 该应用。
    
 </appcenter>
 <deploy>
-    
-- 通过 [Serverless Devs Cli](https://www.serverless-devs.com/serverless-devs/install) 进行部署：
-  - [安装 Serverless Devs Cli 开发者工具](https://www.serverless-devs.com/serverless-devs/install) ，并进行[授权信息配置](https://docs.serverless-devs.com/fc/config) ；
-  - 初始化项目：`s init video-transcode-v3 -d video-transcode-v3`
-  - 进入项目，并进行项目部署：`cd video-transcode-v3 && s deploy -y`
-   
+
 </deploy>
 
 ## 案例介绍
@@ -177,7 +158,7 @@ FFmpeg 是音视频处理领域的一款强大工具，它可以被用于格式�
 
 <p align="center">  
 
-| <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407298906_20211028074819117230.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407044136_20211028074404326599.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407252200_20211028074732517533.png" width="130px" > |
+| <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407298906_20211028074819117230.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407044136_20211028074404326599.png" width="130px" > | <img src="https://images.devsapp.cn/fc-faq/33947367.png" width="130px" > |
 | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | <center>微信公众号：`serverless`</center>                                                                                         | <center>微信小助手：`xiaojiangwh`</center>                                                                                        | <center>钉钉交流群：`33947367`</center>                                                                                           |
 </p>

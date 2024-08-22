@@ -1,7 +1,7 @@
 
 > 注：当前项目为 Serverless Devs 应用，由于应用中会存在需要初始化才可运行的变量（例如应用部署地区、函数名等等），所以**不推荐**直接 Clone 本仓库到本地进行部署或直接复制 s.yaml 使用，**强烈推荐**通过 `s init ${模版名称}` 的方法或应用中心进行初始化，详情可参考[部署 & 体验](#部署--体验) 。
 
-# multimedia-process-flow-v3 帮助文档
+# multimedia-process-flow-dipper 帮助文档
 
 <description>
 
@@ -55,17 +55,11 @@
 
 <appcenter>
    
-- :fire: 通过 [Serverless 应用中心](https://fcnext.console.aliyun.com/applications/create?template=multimedia-process-flow-v3) ，
-  [![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=multimedia-process-flow-v3) 该应用。
+:fire: 通过 [Dipper 应用中心](https://devs.console.aliyun.com/applications/createtemplate=multimedia-process-flow-dipper) ，[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://devs.console.aliyun.com/applications/createtemplate=multimedia-process-flow-dipper) 该应用。
    
 </appcenter>
 <deploy>
-    
-- 通过 [Serverless Devs Cli](https://docs.serverless-devs.com/user-guide/install) 进行部署：
-  - [安装 Serverless Devs Cli 开发者工具](https://docs.serverless-devs.com/user-guide/install) ，并进行[授权信息配置]( https://docs.serverless-devs.com/user-guide/config) ；
-  - 初始化项目：`s init multimedia-process-flow-v3 -d multimedia-process-flow-v3`
-  - 进入项目，并进行项目部署：`cd multimedia-process-flow-v3 && s deploy -y`
-   
+
 </deploy>
 
 ## 案例介绍

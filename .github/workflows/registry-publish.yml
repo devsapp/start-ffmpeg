@@ -3,7 +3,7 @@ name: auto try publish all
 on:
   push:
     branches:
-      - V3
+      - dipper
 env:
   REGISTRY_TOKEN:  ${{secrets.ALIBABA_REGISTRY_V3_PUBLISH_TOKEN}} 
 

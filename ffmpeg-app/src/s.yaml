@@ -3,68 +3,83 @@ name: ffmpeg-app
 access: '{{ access }}'
 vars:
   region: '{{ region }}'
-
-template:
-  template_function_config:
-    region: ${vars.region}
-    runtime: python3.9
-    handler: index.handler
-    memorySize: 1024
-    timeout: 900
-    internetAccess: true
-    role: '{{ roleArn }}'
+  role: '{{ roleArn }}'
 
 resources:
   AudioConvert:
     component: fc3
     props:
-      description: 音频格式转换器
+      region: ${vars.region}
       functionName: '{{ AudioConvert }}'
+      description: 音频格式转换器
       code: ./functions/audio_convert
-    extend:
-      name: template_function_config
+      runtime: python3.9
+      handler: index.handler
+      memorySize: 1024
+      timeout: 900
+      role: ${vars.role}
 
   GetMediaMeta:
     component: fc3
     props:
-      description: 获取音视频 meta
+      region: ${vars.region}
       functionName: '{{ GetMediaMeta }}'
+      description: 获取音视频 meta
       code: ./functions/get_multimedia_meta
-    extend:
-      name: template_function_config
+      runtime: python3.9
+      handler: index.handler
+      memorySize: 1024
+      timeout: 900
+      role: ${vars.role}
 
   GetDuration:
     component: fc3
     props:
-      description: 获取音视频时长
+      region: ${vars.region}
       functionName: '{{ GetDuration }}'
+      description: 获取音视频时长
       code: ./functions/get_duration
-    extend:
-      name: template_function_config
+      runtime: python3.9
+      handler: index.handler
+      memorySize: 1024
+      timeout: 900
+      role: ${vars.role}
   
   VideoGif:
     component: fc3
     props:
-      description: 功能强大的 video 提取为 gif 函数
+      region: ${vars.region}
       functionName: '{{ VideoGif }}'
+      description: 功能强大的 video 提取为 gif 函数
       code: ./functions/video_gif
-    extend:
-      name: template_function_config
+      runtime: python3.9
+      handler: index.handler
+      memorySize: 1024
+      timeout: 900
+      role: ${vars.role}
   
   GetSprites:
     component: fc3
     props:
-      description: 功能强大雪碧图制作函数
+      region: ${vars.region}
       functionName: '{{ GetSprites }}'
+      description: 功能强大雪碧图制作函数
       code: ./functions/get_sprites
-    extend:
-      name: template_function_config
+      runtime: python3.9
+      handler: index.handler
+      memorySize: 1024
+      timeout: 900
+      role: ${vars.role}
 
   VideoWatermark:
     component: fc3
     props:
-      description: 功能强大的视频添加水印功能
+      region: ${vars.region}
       functionName: '{{ VideoWatermark }}'
+      description: 功能强大的视频添加水印功能
       code: ./functions/video_watermark
-    extend:
-      name: template_function_config
+      runtime: python3.9
+      handler: index.handler
+      memorySize: 1024
+      timeout: 900
+      role: ${vars.role}
