@@ -1,7 +1,7 @@
 Edition: 3.0.0
 Type: Project
 Name: multimedia-process-flow-v3
-Version:  0.0.3
+Version:  0.0.4
 Provider:
   - 阿里云
 Description: 基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务
@@ -98,7 +98,7 @@ Parameters:
       title: 对象存储存储桶名
       type: string
       default: ""
-      description: 用于 vscode 编辑器 workspace 和 data 的存储， 和函数在同一个 region
+      description: 存储音视频的 bucket, 必须在 region 参数指定的区域
       required: true
       x-bucket:
         dependency:
