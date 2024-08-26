@@ -75,7 +75,6 @@ Parameters:
         service: FNF
         authorities:
           - AliyunFCInvocationAccess
-          - AliyunFnFFullAccess
 
     functionRoleArn:
       title: 函数角色
@@ -106,13 +105,13 @@ Parameters:
     prefix:
       title: 前缀
       type: string
-      default: src
+      default: src/
       description: 建议设置精准的前缀，同一个 Bucket 下的不同触发器条件不能重叠包含
 
     outputDir:
       title: 转码后的视频保存目录
       type: string
-      default: dst
+      default: dst/
       description: 转码后的视频保存目录。为防止循环触发产生不必要的费用，强烈建议您设置不同于前缀的目标目录。
 
     triggerRoleArn:
