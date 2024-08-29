@@ -1,7 +1,7 @@
 Edition: 3.0.0
 Type: Project
 Name: multimedia-process-flow-dipper
-Version:  0.0.2
+Version:  0.0.3
 Provider:
   - 阿里云
 Description: 基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务
@@ -58,10 +58,10 @@ Parameters:
         - us-west-1
 
     flowName:
-      title: 工作流程名称
+      title: 音视频处理工作流程名称
       type: string
-      default: multimedia-process-flow-${default-suffix}
-      description: Serverless 工作流流程名称
+      default: multimedia-flow-${default-suffix}
+      description: 音视频处理 Serverless 工作流流程名称
 
     fnfRoleArn:
       title: 工作流 RAM角色ARN
@@ -102,6 +102,7 @@ Parameters:
       x-bucket:
         dependency:
           - region
+
     prefix:
       title: 前缀
       type: string

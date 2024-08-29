@@ -8,5 +8,3 @@
     "flv"
   ]
 }
-
-// oss-trigger-workflow 设置 oss触发器，设置前缀为 source，避免无限循环

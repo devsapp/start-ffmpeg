@@ -1,5 +1,5 @@
 services: #服务变量
-  oss-trigger-workflow: 
+  oss-trigger-execute-flow: 
     segInterval:
       title: 对视频进行分片处理的分片时间
       type: string

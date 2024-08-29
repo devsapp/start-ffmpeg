@@ -18,6 +18,7 @@ resources:
       memorySize: 1024
       timeout: 900
       role: ${vars.role}
+      logConfig: auto
 
   GetMediaMeta:
     component: fc3
@@ -31,6 +32,7 @@ resources:
       memorySize: 1024
       timeout: 900
       role: ${vars.role}
+      logConfig: auto
 
   GetDuration:
     component: fc3
@@ -44,6 +46,7 @@ resources:
       memorySize: 1024
       timeout: 900
       role: ${vars.role}
+      logConfig: auto
   
   VideoGif:
     component: fc3
@@ -57,6 +60,7 @@ resources:
       memorySize: 1024
       timeout: 900
       role: ${vars.role}
+      logConfig: auto
   
   GetSprites:
     component: fc3
@@ -70,6 +74,7 @@ resources:
       memorySize: 1024
       timeout: 900
       role: ${vars.role}
+      logConfig: auto
 
   VideoWatermark:
     component: fc3
@@ -83,3 +88,4 @@ resources:
       memorySize: 1024
       timeout: 900
       role: ${vars.role}
+      logConfig: auto

@@ -19,6 +19,7 @@ resources:
       internetAccess: true
       role: '{{ roleArn }}'
       code: ./code/transcode
+      logConfig: auto
       asyncInvokeConfig:
         maxAsyncEventAgeInSeconds: 18000
         maxAsyncRetryAttempts: 2
@@ -38,6 +39,7 @@ resources:
       timeout: 60
       functionName: dest-succ
       code: ./code/succ
+      logConfig: auto
 
   dest_fail:
     component: fc3
@@ -50,3 +52,4 @@ resources:
       timeout: 60
       functionName: dest-fail
       code: ./code/fail
+      logConfig: auto

@@ -20,6 +20,7 @@ resources:
       code: code/split
       vpcConfig: auto
       nasConfig: auto
+      logConfig: auto
   
   transcode:
     component: fc3
@@ -34,6 +35,7 @@ resources:
       code: code/transcode
       vpcConfig: ${resources.split.output.vpcConfig}
       nasConfig: ${resources.split.output.nasConfig}
+      logConfig: auto
     
   merge:
     component: fc3
@@ -48,6 +50,7 @@ resources:
       code: code/merge
       vpcConfig: ${resources.split.output.vpcConfig}
       nasConfig: ${resources.split.output.nasConfig}
+      logConfig: auto
 
   after-process:
     component: fc3
@@ -62,8 +65,9 @@ resources:
       code: code/after-process
       vpcConfig: ${resources.split.output.vpcConfig}
       nasConfig: ${resources.split.output.nasConfig}
+      logConfig: auto
 
-  oss-trigger-workflow:
+  oss-trigger-execute-flow:
     component: fc3
     props:
       region: ${vars.region}
@@ -76,9 +80,10 @@ resources:
         FLOW_NAME: ${vars.flowName}
         SEG_INTERVAL: '{{ segInterval }}'
         DST_FORMATS: '{{ dstFormats }}'
-      functionName: ${vars.flowName}_oss-trigger-workflow
+      functionName: ${vars.flowName}_trigger_execute
       role: ${vars.role}
       code: code/oss-trigger
+      logConfig: auto
       triggers:
         - triggerName: ${vars.flowName}
           triggerType: oss
@@ -94,7 +99,7 @@ resources:
           invocationRole: '{{ triggerRoleArn }}'
           sourceArn: acs:oss:${this.props.region}:${config("AccountID")}:{{ ossBucket }}
 
-  multimedia-process-v3-workflow:
+  multimedia-process-workflow:
     component: flow
     props:
       name: ${vars.flowName}
