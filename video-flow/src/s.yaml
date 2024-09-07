@@ -35,7 +35,7 @@ resources:
       code: code/transcode
       vpcConfig: ${resources.split.output.vpcConfig}
       nasConfig: ${resources.split.output.nasConfig}
-      logConfig: auto
+      logConfig: ${resources.split.output.logConfig}
     
   merge:
     component: fc3
@@ -50,7 +50,7 @@ resources:
       code: code/merge
       vpcConfig: ${resources.split.output.vpcConfig}
       nasConfig: ${resources.split.output.nasConfig}
-      logConfig: auto
+      logConfig: ${resources.split.output.logConfig}
 
   after-process:
     component: fc3
@@ -65,7 +65,7 @@ resources:
       code: code/after-process
       vpcConfig: ${resources.split.output.vpcConfig}
       nasConfig: ${resources.split.output.nasConfig}
-      logConfig: auto
+      logConfig: ${resources.split.output.logConfig}
 
   oss-trigger-execute-flow:
     component: fc3
@@ -83,7 +83,7 @@ resources:
       functionName: ${vars.flowName}_trigger_execute
       role: ${vars.role}
       code: code/oss-trigger
-      logConfig: auto
+      logConfig: ${resources.split.output.logConfig}
       triggers:
         - triggerName: ${vars.flowName}
           triggerType: oss
