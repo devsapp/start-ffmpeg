@@ -1,22 +1,13 @@
 
 > 注：当前项目为 Serverless Devs 应用，由于应用中会存在需要初始化才可运行的变量（例如应用部署地区、函数名等等），所以**不推荐**直接 Clone 本仓库到本地进行部署或直接复制 s.yaml 使用，**强烈推荐**通过 `s init ${模版名称}` 的方法或应用中心进行初始化，详情可参考[部署 & 体验](#部署--体验) 。
 
-# video-transcode-dipper 帮助文档
+# video-transcode-cap 帮助文档
 
 <description>
 
 快速部署音视频转码的应用到阿里云函数计算
 
 </description>
-
-<codeUrl>
-
-</codeUrl>
-<preview>
-
-
-
-</preview>
 
 
 ## 前期准备
@@ -30,6 +21,7 @@
 | 服务/业务 |  权限  | 相关文档 |
 | --- |  --- | --- |
 | 函数计算 |  AliyunFCFullAccess | [帮助文档](https://help.aliyun.com/product/2508973.html) [计费文档](https://help.aliyun.com/document_detail/2512928.html) |
+| 日志服务 |  AliyunFCServerlessDevsRolePolicy | [帮助文档](https://help.aliyun.com/zh/sls) [计费文档](https://help.aliyun.com/zh/sls/product-overview/billing) |
 
 </service>
 
@@ -49,11 +41,12 @@
 
 <appcenter>
    
-:fire: 通过 [Dipper 应用中心](https://devs.console.aliyun.com/applications/createtemplate=video-transcode-dipper) ，[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://devs.console.aliyun.com/applications/createtemplate=video-transcode-dipper) 该应用。
+- :fire: 通过 [云原生应用开发平台 CAP](https://devs.console.aliyun.com/applications/create?template=video-transcode-cap) ，[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://devs.console.aliyun.com/applications/create?template=video-transcode-cap) 该应用。
    
 </appcenter>
 <deploy>
-
+    
+   
 </deploy>
 
 ## 案例介绍
@@ -64,7 +57,8 @@
 
 FFmpeg 是音视频处理领域的一款强大工具，它可以被用于格式转换、编解码、录制和流处理等多种音视频相关任务。该技术因其高效性和多功能性，在视频处理、直播流媒体、数字媒体播放和编辑等多个领域中得到广泛应用。截至2023年4月，FFmpeg 在 GitHub 上的 star 数接近30,000，这反映了其在开源社区的受欢迎程度和影响力。被Netflix、YouTube、Facebook等多家知名企业采用，这些公司依赖 FFmpeg 处理其庞大的视频数据，以提供流畅的媒体播放体验、视频内容编辑和优化视频传输效率等服务。
 
-使用本案例，serverless开发平台将为您一键部署一个“弹性高可用音视频转码Job系统”应用。
+使用本案例，云原生应用开发平台将为您一键部署一个“弹性高可用音视频转码Job系统”应用。
+
 
 **拥有函数计算的Serverless优势:**
 
@@ -147,19 +141,3 @@ FFmpeg 是音视频处理领域的一款强大工具，它可以被用于格式�
 
 <matters id="flushContent">
 </matters>
-
-
-<devgroup>
-
-
-## 开发者社区
-
-您如果有关于错误的反馈或者未来的期待，您可以在 [Serverless Devs repo Issues](https://github.com/serverless-devs/serverless-devs/issues) 中进行反馈和交流。如果您想要加入我们的讨论组或者了解 FC 组件的最新动态，您可以通过以下渠道进行：
-
-<p align="center">  
-
-| <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407298906_20211028074819117230.png" width="130px" > | <img src="https://serverless-article-picture.oss-cn-hangzhou.aliyuncs.com/1635407044136_20211028074404326599.png" width="130px" > | <img src="https://images.devsapp.cn/fc-faq/33947367.png" width="130px" > |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| <center>微信公众号：`serverless`</center>                                                                                         | <center>微信小助手：`xiaojiangwh`</center>                                                                                        | <center>钉钉交流群：`33947367`</center>                                                                                           |
-</p>
-</devgroup>

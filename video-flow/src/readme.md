@@ -1,24 +1,13 @@
 
 > 注：当前项目为 Serverless Devs 应用，由于应用中会存在需要初始化才可运行的变量（例如应用部署地区、函数名等等），所以**不推荐**直接 Clone 本仓库到本地进行部署或直接复制 s.yaml 使用，**强烈推荐**通过 `s init ${模版名称}` 的方法或应用中心进行初始化，详情可参考[部署 & 体验](#部署--体验) 。
 
-# multimedia-process-flow-dipper 帮助文档
+# multimedia-process-flow-cap 帮助文档
 
 <description>
 
 基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务
 
 </description>
-
-<codeUrl>
-
-
-
-</codeUrl>
-<preview>
-
-
-
-</preview>
 
 
 ## 前期准备
@@ -36,6 +25,7 @@
 | 专有网络 |  AliyunFCServerlessDevsRolePolicy | [帮助文档](https://help.aliyun.com/zh/vpc) [计费文档](https://help.aliyun.com/zh/vpc/product-overview/billing) |
 | 对象存储 |  AliyunFCServerlessDevsRolePolicy | [帮助文档](https://help.aliyun.com/zh/oss) [计费文档](https://help.aliyun.com/zh/oss/product-overview/billing) |
 | 云工作流 |  AliyunFnFFullAccess | [帮助文档](undefined) [计费文档](undefined) |
+| 日志服务 |  AliyunFCServerlessDevsRolePolicy | [帮助文档](https://help.aliyun.com/zh/sls) [计费文档](https://help.aliyun.com/zh/sls/product-overview/billing) |
 
 </service>
 
@@ -55,7 +45,7 @@
 
 <appcenter>
    
-- :fire: 通过 [Dipper 应用中心](https://devs.console.aliyun.com/applications/create?template=multimedia-process-flow-dipper) ，[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://devs.console.aliyun.com/applications/create?template=multimedia-process-flow-dipper) 该应用。
+- :fire: 通过 [云原生应用开发平台 CAP](https://devs.console.aliyun.com/applications/create?template=multimedia-process-flow-cap) ，[![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://devs.console.aliyun.com/applications/create?template=multimedia-process-flow-cap) 该应用。
    
 </appcenter>
 <deploy>
@@ -102,19 +92,3 @@ FFmpeg 是音视频处理领域的一款强大工具，它可以被用于格式�
 
 <matters id="flushContent">
 </matters>
-
-
-<devgroup>
-
-
-## 开发者社区
-
-您如果有关于错误的反馈或者未来的期待，您可以在 [Serverless Devs repo Issues](https://github.com/serverless-devs/serverless-devs/issues) 中进行反馈和交流。如果您想要加入我们的讨论组或者了解最新动态，您可以通过以下渠道进行：
-
-<p align="center">  
-
-| <img src="https://img.alicdn.com/imgextra/i2/O1CN010Sk7sv1Xl6WuOb6uU_!!6000000002963-0-tps-666-662.jpg" width="130px" > | <img src="https://img.alicdn.com/imgextra/i2/O1CN01ATrYb8283GOwhAQzZ_!!6000000007876-0-tps-574-560.jpg" width="130px" > | <img src="https://img.alicdn.com/imgextra/i4/O1CN010Vt5aw27VN5rJIguB_!!6000000007802-0-tps-668-630.jpg" width="130px" > |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| <center>微信公众号：`serverless`</center>                                                                                         | <center>微信小助手：`xiaojiangwh`</center>                                                                                        | <center>钉钉交流群：`33947367`</center>                                                                                           |
-</p>
-</devgroup>

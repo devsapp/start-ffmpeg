@@ -12,7 +12,9 @@ resources:
       functionName: '{{ functionName }}'
       runtime: python3
       handler: index.handler
+      cpu: 2
       memorySize: 8192
+      diskSize: 512
       timeout: 7200
       environmentVariables:
         TZ: '{{ timeZone }}'
@@ -35,7 +37,9 @@ resources:
       description: async task destination success function by dipper
       runtime: python3
       handler: index.handler
-      memorySize: 512
+      cpu: 1
+      memorySize: 1024
+      diskSize: 512
       timeout: 60
       functionName: dest-succ
       code: ./code/succ
@@ -48,7 +52,9 @@ resources:
       description: async task destination fail function by dipper
       runtime: python3
       handler: index.handler
-      memorySize: 512
+      cpu: 1
+      memorySize: 1024
+      diskSize: 512
       timeout: 60
       functionName: dest-fail
       code: ./code/fail
