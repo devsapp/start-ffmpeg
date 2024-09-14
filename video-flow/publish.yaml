@@ -1,7 +1,7 @@
 Edition: 3.0.0
 Type: Project
-Name: multimedia-process-flow-dipper
-Version:  0.0.4
+Name: multimedia-process-flow-cap
+Version:  0.0.5
 Provider:
   - 阿里云
 Description: 基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务
@@ -30,6 +30,9 @@ Service:
   云工作流:
     Authorities:
       - AliyunFnFFullAccess
+  日志服务: 
+    Authorities: 
+      - AliyunFCServerlessDevsRolePolicy
 Parameters:
   type: object
   additionalProperties: false # 不允许增加其他属性
@@ -106,7 +109,7 @@ Parameters:
     prefix:
       title: 前缀
       type: string
-      default: src/
+      default: video-flow-src/
       description: 建议设置精准的前缀，同一个 Bucket 下的不同触发器条件不能重叠包含
 
     outputDir:

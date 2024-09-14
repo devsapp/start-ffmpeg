@@ -15,7 +15,9 @@ resources:
       code: ./functions/audio_convert
       runtime: python3.9
       handler: index.handler
+      cpu: 1
       memorySize: 1024
+      diskSize: 512
       timeout: 900
       role: ${vars.role}
       logConfig: auto
@@ -29,7 +31,9 @@ resources:
       code: ./functions/get_multimedia_meta
       runtime: python3.9
       handler: index.handler
+      cpu: 1
       memorySize: 1024
+      diskSize: 512
       timeout: 900
       role: ${vars.role}
       logConfig: auto
@@ -43,7 +47,9 @@ resources:
       code: ./functions/get_duration
       runtime: python3.9
       handler: index.handler
+      cpu: 1
       memorySize: 1024
+      diskSize: 512
       timeout: 900
       role: ${vars.role}
       logConfig: auto
@@ -57,7 +63,9 @@ resources:
       code: ./functions/video_gif
       runtime: python3.9
       handler: index.handler
+      cpu: 1
       memorySize: 1024
+      diskSize: 512
       timeout: 900
       role: ${vars.role}
       logConfig: auto
@@ -71,7 +79,9 @@ resources:
       code: ./functions/get_sprites
       runtime: python3.9
       handler: index.handler
+      cpu: 1
       memorySize: 1024
+      diskSize: 512
       timeout: 900
       role: ${vars.role}
       logConfig: auto
@@ -85,7 +95,9 @@ resources:
       code: ./functions/video_watermark
       runtime: python3.9
       handler: index.handler
+      cpu: 1
       memorySize: 1024
+      diskSize: 512
       timeout: 900
       role: ${vars.role}
       logConfig: auto
