@@ -5,7 +5,7 @@
 
 <description>
 
-基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务
+基于 FC + Serverless Workflow + OSS + NAS + FFmpeg 实现的弹性高可用、并行处理的视频转码服务,快速创建部署到云原生应用开发平台。
 
 </description>
 
