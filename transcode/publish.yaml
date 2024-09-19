@@ -3,8 +3,8 @@ Type: Project
 Name: video-transcode-cap
 Provider:
   - 阿里云
-Version: 0.0.3
-Description: 快速部署音视频转码的应用到阿里云函数计算
+Version: 0.0.4
+Description: 本案例展示了将FFmpeg包装为一款音视频转码应用，能够便捷地实现各种格式的音视频转码需求。可以用于格式转换、编解码、录制和流处理等多种音视频相关任务。
 HomePage: https://github.com/devsapp/start-ffmpeg/tree/dipper/transcode
 Organization: 阿里云函数计算（FC）
 Effective: Public
