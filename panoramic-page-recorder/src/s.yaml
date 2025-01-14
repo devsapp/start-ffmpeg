@@ -1,0 +1,117 @@
+
+# ------------------------------------
+#   官方手册: https://docs.serverless-devs.com/user-guide/aliyun/#fc3
+#   常见小贴士: https://docs.serverless-devs.com/user-guide/tips/
+#   有问题快来钉钉群问一下吧：33947367
+# ------------------------------------
+
+edition: 3.0.0
+name: panoramic-page-recording-project
+access: "{{ access }}"
+
+vars: # 全局变量
+  role: "{{ roleArn }}"
+  region: "{{ region }}"
+  name: "{{ functionNamePrefix }}"
+  TZ: "{{ timeZone }}"
+
+resources:
+  recorder: 
+    component: fc3 
+    props:  
+      region: ${vars.region}
+      functionName: ${vars.name}-recorder
+      runtime: custom-container
+      cpu: 8
+      memorySize: 16384
+      diskSize: 10240
+      timeout: 7200
+      logConfig: auto
+      customContainerConfig:
+        image: registry.${vars.region}.aliyuncs.com/aliyun-fc/panoramic-page-recorder:v1
+      environmentVariables:
+        OSS_BUCKET: "{{ ossBucket }}"
+        OSS_ENDPOINT: oss-${vars.region}-internal.aliyuncs.com          
+        TZ: ${vars.TZ}
+      asyncInvokeConfig:
+        destinationConfig:
+          onSuccess: 
+            destination: acs:fc:${vars.region}::functions/${vars.name}-dest-succ
+          onFailure: 
+            destination: acs:fc:${vars.region}::functions/${vars.name}-dest-fail
+        maxAsyncEventAgeInSeconds: 18000
+        maxAsyncRetryAttempts: 0
+        asyncTask: true
+      role: ${vars.role}
+      internetAccess: true
+      triggers:
+        - triggerName: httpTrigger
+          triggerType: http
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - POST
+      annotations:
+        headers:
+          x-fc-disable-container-reuse: "True"
+
+  controller:
+    component: fc3
+    actions: # TODO, 等 nodejs sdk 公共层升级，可以去掉这块，引入层 arn 即可
+      pre-deploy:
+        - run: npm install
+          path: ./controller
+    props:
+      region: ${vars.region}
+      functionName: ${vars.name}-controller
+      description: 'controller for stopping recording task'
+      runtime: nodejs18
+      code: ./controller
+      handler: index.handler
+      role: ${vars.role}
+      internetAccess: true
+      logConfig: auto
+      memorySize: 512
+      timeout: 60
+      environmentVariables:
+        RECORDER_FUNCTION_NAME: ${vars.name}-recorder
+        TZ: ${vars.TZ}
+      triggers:
+        - triggerName: httpTrigger
+          triggerType: http
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - POST
+
+  dest_succ: 
+    component: fc3
+    props: 
+      region: ${vars.region}
+      functionName: ${vars.name}-dest-succ
+      description: 'async task destination success function by serverless devs'
+      runtime: python3
+      code: ./dest/succ
+      handler: index.handler
+      memorySize: 512
+      timeout: 60
+      logConfig: auto
+      internetAccess: true
+      environmentVariables:
+        TZ: ${vars.TZ}
+
+  dest_fail: 
+    component: fc3
+    props: 
+      region: ${vars.region}
+      functionName: ${vars.name}-dest-fail
+      description: 'async task destination fail function by serverless devs'
+      runtime: python3
+      code: ./dest/fail
+      handler: index.handler
+      memorySize: 512
+      timeout: 60
+      logConfig: auto
+      internetAccess: true
+      environmentVariables:
+        TZ: ${vars.TZ}
