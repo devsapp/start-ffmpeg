@@ -1,7 +1,7 @@
 Edition: 3.0.0
 Type: Project
 Name: HttpPanoramicPageRecording-v3
-Version: 0.0.1
+Version: 0.0.2
 Provider:
   - 阿里云
 Description: 快速部署一个Http触发的全景web页面录制-高级版应用到阿里云函数计算

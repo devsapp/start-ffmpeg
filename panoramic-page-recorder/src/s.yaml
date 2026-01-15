@@ -28,7 +28,7 @@ resources:
       timeout: 7200
       logConfig: auto
       customContainerConfig:
-        image: registry.${vars.region}.aliyuncs.com/aliyun-fc/panoramic-page-recorder:v1
+        image: cap-demo-public-registry.cn-hangzhou.cr.aliyuncs.com/cap-app/panoramic-page-recorder:v1
       environmentVariables:
         OSS_BUCKET: "{{ ossBucket }}"
         OSS_ENDPOINT: oss-${vars.region}-internal.aliyuncs.com          
